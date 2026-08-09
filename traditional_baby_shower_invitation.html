@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valaikappu | Madhumitha & Subash</title>
+    
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Load Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Montserrat:wght@300;400;500;600&family=Rozha+One&display=swap" rel="stylesheet">
+    
+    <!-- Load jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- Load FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        maroon: '#730c14', /* Deep Temple Red/Kumkum */
+                        gold: '#d4af37',   /* Antique Gold/Zari */
+                        sandal: '#fdf5e6', /* Sandalwood/Chandan */
+                        green: '#2e5a27',  /* Mango Leaf/Banana Leaf */
+                        dark: '#3a2022',
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Montserrat"', 'sans-serif'],
+                        display: ['"Rozha One"', 'serif'], /* Traditional thick serif */
+                    },
+                    boxShadow: {
+                        'gold': '0 10px 25px -5px rgba(212, 175, 55, 0.3)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #fdf5e6;
+            /* Subtle Kolam/Mandala background pattern */
+            background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.15'%3E%3Cpath d='M40 80c-22.091 0-40-17.909-40-40S17.909 0 40 0s40 17.909 40 40-17.909 40-40 40zm0-2c20.987 0 38-17.013 38-38S60.987 2 40 2 2 19.013 2 40s17.013 38 38 38zm0-10c-15.464 0-28-12.536-28-28S24.536 12 40 12s28 12.536 28 28-12.536 28-28 28zm0-2c14.359 0 26-11.641 26-26S54.359 14 40 14 14 25.641 14 40s11.641 26 26 26zm0-10c-8.837 0-16-7.163-16-16s7.163-16 16-16 16 7.163 16 16-7.163 16-16 16zm0-2c7.732 0 14-6.268 14-14s-6.268-14-14-14-14 6.268-14 14 6.268 14 14 14zm0-6c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8zm0-2c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            color: #3a2022;
+        }
+
+        .fade-in {
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Traditional Zari Border */
+        .zari-border {
+            border: 4px solid #d4af37;
+            outline: 2px solid #730c14;
+            outline-offset: -8px;
+            position: relative;
+        }
+        
+        .zari-border::before, .zari-border::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #d4af37;
+        }
+
+        .zari-border::before { top: 4px; left: 4px; border-right: none; border-bottom: none; }
+        .zari-border::after { bottom: 4px; right: 4px; border-left: none; border-top: none; }
+
+        /* Toranam Decor */
+        .toranam-header {
+            width: 100%;
+            height: 40px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 40' preserveAspectRatio='none'%3E%3Cpath d='M0 0 Q25 40 50 0 Q75 40 100 0' fill='none' stroke='%232e5a27' stroke-width='4'/%3E%3Ccircle cx='25' cy='15' r='5' fill='%23d4af37'/%3E%3Ccircle cx='75' cy='15' r='5' fill='%23d4af37'/%3E%3Cpath d='M10 0 L25 30 L40 0 Z' fill='%232e5a27'/%3E%3Cpath d='M60 0 L75 30 L90 0 Z' fill='%232e5a27'/%3E%3C/svg%3E");
+            background-repeat: repeat-x;
+            background-size: 100px 40px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 50;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased min-h-screen flex flex-col items-center relative">
+
+    <!-- Top Mango Leaf & Marigold Toranam -->
+    <div class="toranam-header"></div>
+
+    <!-- Floating Language Switcher Button -->
+    <button onclick="toggleLanguage()" id="langToggleBtn" class="fixed top-4 right-4 z-50 bg-maroon text-gold hover:bg-gold hover:text-maroon border-2 border-gold font-semibold px-4 py-2 rounded-full shadow-lg transition-all duration-300 flex items-center gap-2 text-xs md:text-sm cursor-pointer">
+        <i class="fa-solid fa-language text-base"></i>
+        <span id="langBtnText">தமிழ்</span>
+    </button>
+
+    <main class="w-full max-w-4xl mx-auto px-4 py-16 md:py-24 fade-in">
+        
+        <header class="bg-maroon zari-border rounded-lg shadow-gold overflow-hidden mb-12 text-center relative p-8 md:p-16">
+            
+            <!-- Background Mandala in Hero -->
+            <div class="absolute inset-0 opacity-10 flex items-center justify-center pointer-events-none">
+                <svg width="400" height="400" viewBox="0 0 100 100" class="animate-[spin_60s_linear_infinite]">
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="#d4af37" stroke-width="2"/>
+                    <path d="M50 5 L55 45 L95 50 L55 55 L50 95 L45 55 L5 50 L45 45 Z" fill="#d4af37"/>
+                </svg>
+            </div>
+
+            <div class="relative z-10 flex flex-col items-center">
+                <!-- Srirangam Gopuram Motif -->
+                <div class="mb-6">
+                    <svg width="80" height="100" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" class="mx-auto drop-shadow-lg">
+                        <!-- Gopuram Base -->
+                        <rect x="10" y="90" width="80" height="30" fill="#d4af37" />
+                        <!-- Tiers -->
+                        <polygon points="15,90 85,90 80,70 20,70" fill="#c39b26" />
+                        <polygon points="22,68 78,68 72,50 28,50" fill="#d4af37" />
+                        <polygon points="30,48 70,48 64,30 36,30" fill="#c39b26" />
+                        <polygon points="38,28 62,28 55,15 45,15" fill="#d4af37" />
+                        <!-- Dome/Kalasam -->
+                        <path d="M40 15 Q50 -5 60 15 Z" fill="#d4af37" />
+                        <circle cx="50" cy="2" r="4" fill="#d4af37" />
+                        <circle cx="35" cy="15" r="3" fill="#d4af37" />
+                        <circle cx="65" cy="15" r="3" fill="#d4af37" />
+                        <!-- Doorway -->
+                        <path d="M40 120 L40 95 Q50 85 60 95 L60 120 Z" fill="#730c14" />
+                    </svg>
+                </div>
+                
+                <h3 class="text-xs md:text-sm tracking-[0.3em] text-gold uppercase font-semibold mb-4" data-en="We Cordially Invite You &amp; Your Family" data-ta="உங்களையும் உங்கள் குடும்பத்தினரையும் அன்புடன் அழைக்கிறோம்">We Cordially Invite You &amp; Your Family</h3>
+                
+                <h1 class="text-5xl md:text-7xl font-display text-gold mb-4 leading-tight">
+                    <span data-en="Valaikappu" data-ta="வளைகாப்பு">Valaikappu</span> <br> 
+                    <span class="text-3xl md:text-4xl font-serif italic text-sandal" data-en="&amp; Baby Shower" data-ta="மற்றும் சீமந்த விழா">&amp; Baby Shower</span>
+                </h1>
+                
+                <p class="text-lg md:text-xl text-sandal/90 mb-8 font-light border-b border-gold/30 pb-6 inline-block" data-en="Celebrating the Grace of Motherhood" data-ta="தாய்மையைப் போற்றும் மங்கல விழா">Celebrating the Grace of Motherhood</p>
+                
+                <div class="py-4 max-w-lg mx-auto">
+                    <h2 class="text-3xl md:text-5xl font-display text-sandal tracking-wide shadow-black drop-shadow-md">
+                        <span data-en="Madhumitha" data-ta="மதுமிதா">Madhumitha</span> 
+                        <br class="md:hidden"> 
+                        <span class="text-2xl text-gold font-light mx-3">&amp;</span> 
+                        <span data-en="Subash" data-ta="சுபாஷ்">Subash</span>
+                    </h2>
+                </div>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            
+            <!-- When & Where (Traditional Card) -->
+            <section class="bg-white border-2 border-gold/50 rounded-lg shadow-lg p-8 md:p-10 flex flex-col items-center text-center relative overflow-hidden">
+                <!-- Corner decorations -->
+                <div class="absolute top-0 left-0 w-8 h-8 border-t-4 border-l-4 border-maroon m-2"></div>
+                <div class="absolute top-0 right-0 w-8 h-8 border-t-4 border-r-4 border-maroon m-2"></div>
+                <div class="absolute bottom-0 left-0 w-8 h-8 border-b-4 border-l-4 border-maroon m-2"></div>
+                <div class="absolute bottom-0 right-0 w-8 h-8 border-b-4 border-r-4 border-maroon m-2"></div>
+
+                <div class="w-14 h-14 bg-sandal border border-gold rounded-full flex items-center justify-center text-maroon text-2xl mb-6 shadow-sm">
+                    <i class="fa-solid fa-calendar-day"></i>
+                </div>
+                <h3 class="text-3xl font-display text-maroon mb-6" data-en="Auspicious Day &amp; Venue" data-ta="சுப தினமும் விழா இடமும்">Auspicious Day &amp; Venue</h3>
+                
+                <div class="mb-6 w-full">
+                    <p class="text-lg font-medium text-dark uppercase tracking-widest" data-en="Sunday" data-ta="ஞாயிற்றுக்கிழமை">Sunday</p>
+                    <p class="text-2xl md:text-3xl font-display text-gold font-bold my-2" data-en="06 September 2026" data-ta="06 செப்டம்பர் 2026">06 September 2026</p>
+                    <p class="text-maroon font-semibold" data-en="10:00 AM Onwards" data-ta="காலை 10:00 மணி முதல்">10:00 AM Onwards</p>
+                </div>
+                
+                <div class="w-24 h-[2px] bg-gold/50 mb-6"></div>
+                
+                <div class="w-full">
+                    <h4 class="font-bold text-dark mb-2 text-lg" data-en="PARKKAVAN TOWERS" data-ta="பார்க்கவன் டவர்ஸ்">PARKKAVAN TOWERS</h4>
+                    <p class="text-dark/80 text-sm leading-relaxed mb-6" data-en="Raja Nagar, No. 1 Tollgate, &lt;br&gt; Bikshandarkoil, Tiruchirappalli, &lt;br&gt; Tamil Nadu 621216" data-ta="ராஜா நகர், எண் 1 டோல்கேட், &lt;br&gt; பிச்சாண்டார்கோவில், திருச்சிராப்பள்ளி, &lt;br&gt; தமிழ்நாடு 621216">
+                        Raja Nagar, No. 1 Tollgate, <br>
+                        Bikshandarkoil, Tiruchirappalli, <br>
+                        Tamil Nadu 621216
+                    </p>
+                    <a href="https://maps.app.goo.gl/cFfFNj5tDBRYRcQL9" target="_blank" class="inline-flex items-center gap-2 bg-maroon hover:bg-maroon/90 text-sandal px-6 py-3 rounded text-sm transition-all shadow-md font-semibold border border-gold/30 uppercase tracking-wider">
+                        <i class="fa-solid fa-location-dot text-gold"></i> 
+                        <span data-en="View on Google Maps" data-ta="கூகுள் வரைபடத்தில் பார்க்க">View on Google Maps</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Countdown Timer & Add to Calendar -->
+            <section class="bg-white border-2 border-gold/50 rounded-lg shadow-lg p-8 md:p-10 flex flex-col items-center justify-between text-center relative overflow-hidden">
+                <!-- Corner decorations -->
+                <div class="absolute top-0 left-0 w-8 h-8 border-t-4 border-l-4 border-maroon m-2"></div>
+                <div class="absolute top-0 right-0 w-8 h-8 border-t-4 border-r-4 border-maroon m-2"></div>
+                <div class="absolute bottom-0 left-0 w-8 h-8 border-b-4 border-l-4 border-maroon m-2"></div>
+                <div class="absolute bottom-0 right-0 w-8 h-8 border-b-4 border-r-4 border-maroon m-2"></div>
+
+                <div class="w-full flex flex-col items-center">
+                    <div class="w-14 h-14 bg-sandal border border-gold rounded-full flex items-center justify-center text-maroon text-2xl mb-6 shadow-sm">
+                        <i class="fa-solid fa-hourglass-half"></i>
+                    </div>
+                    <h3 class="text-3xl font-display text-maroon mb-8" data-en="Awaiting the Joy" data-ta="மகிழ்ச்சியான தருணத்தை எதிர்நோக்கி...">Awaiting the Joy</h3>
+                    
+                    <div class="grid grid-cols-4 gap-2 md:gap-4 w-full" id="countdown">
+                        <!-- Days -->
+                        <div class="bg-sandal border border-gold/30 rounded p-3 md:p-4 shadow-sm flex flex-col items-center">
+                            <span id="days" class="block text-3xl md:text-4xl font-display text-maroon mb-1">00</span>
+                            <span class="text-[10px] md:text-xs text-dark font-bold uppercase tracking-widest" data-en="Days" data-ta="நாட்கள்">Days</span>
+                        </div>
+                        <!-- Hours -->
+                        <div class="bg-sandal border border-gold/30 rounded p-3 md:p-4 shadow-sm flex flex-col items-center">
+                            <span id="hours" class="block text-3xl md:text-4xl font-display text-maroon mb-1">00</span>
+                            <span class="text-[10px] md:text-xs text-dark font-bold uppercase tracking-widest" data-en="Hours" data-ta="மணிநேரம்">Hours</span>
+                        </div>
+                        <!-- Minutes -->
+                        <div class="bg-sandal border border-gold/30 rounded p-3 md:p-4 shadow-sm flex flex-col items-center">
+                            <span id="mins" class="block text-3xl md:text-4xl font-display text-maroon mb-1">00</span>
+                            <span class="text-[10px] md:text-xs text-dark font-bold uppercase tracking-widest" data-en="Mins" data-ta="நிமிடங்கள்">Mins</span>
+                        </div>
+                        <!-- Seconds -->
+                        <div class="bg-sandal border border-gold/30 rounded p-3 md:p-4 shadow-sm flex flex-col items-center">
+                            <span id="secs" class="block text-3xl md:text-4xl font-display text-maroon mb-1">00</span>
+                            <span class="text-[10px] md:text-xs text-dark font-bold uppercase tracking-widest" data-en="Secs" data-ta="விநாடிகள்">Secs</span>
+                        </div>
+                    </div>
+                    
+                    <p class="mt-6 text-maroon italic font-serif text-lg font-semibold" data-en="Join us to bless the mother-to-be and the little one." data-ta="தாயையும் வருங்காலச் சேயையும் மனமகிழ்ந்து வாழ்த்த அன்புடன் அழைக்கிறோம்!">Join us to bless the mother-to-be and the little one.</p>
+                </div>
+
+                <!-- Save to Calendar Buttons -->
+                <div class="mt-8 w-full border-t border-gold/30 pt-6">
+                    <p class="text-xs uppercase tracking-widest text-dark font-bold mb-3" data-en="Save Event To Your Calendar" data-ta="நிகழ்வை நாட்காட்டியில் சேமிக்க">Save Event To Your Calendar</p>
+
+                    <div class="flex flex-wrap items-center justify-center gap-3">
+                        <button onclick="addToGoogleCalendar()" class="inline-flex items-center gap-2 bg-sandal hover:bg-gold/20 text-maroon border border-gold px-4 py-2 rounded text-xs font-semibold transition-all shadow-sm cursor-pointer">
+                            <i class="fa-brands fa-google text-maroon"></i>
+                            <span data-en="Google Calendar" data-ta="கூகுள் நாட்காட்டி">Google Calendar</span>
+                        </button>
+                        <button onclick="downloadICSFile()" class="inline-flex items-center gap-2 bg-sandal hover:bg-gold/20 text-maroon border border-gold px-4 py-2 rounded text-xs font-semibold transition-all shadow-sm cursor-pointer">
+                            <i class="fa-solid fa-calendar-plus text-maroon"></i>
+                            <span data-en="Apple / Outlook / iCal" data-ta="ஆப்பிள் / அவுட்லுக் / ஐகேல்">Apple / Outlook / iCal</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <footer class="text-center text-maroon font-serif text-lg py-6 border-t border-gold/30">
+            <p data-en="Made with love for Madhumitha &amp; Subash" data-ta="மதுமிதா &amp; சுபாஷ் தம்பதியினருக்கு அன்புடன்">Made with love for Madhumitha &amp; Subash</p>
+            <p class="text-sm mt-2 text-dark" data-en="Trichy" data-ta="திருச்சி">Trichy</p>
+        </footer>
+
+    </main>
+
+    <script>
+        // Language Toggle State
+        let currentLang = 'en';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'ta' : 'en';
+            
+            // Switch text content for elements with data-en and data-ta attributes
+            $('[data-en]').each(function() {
+                const text = $(this).attr(`data-${currentLang}`);
+                if (text) {
+                    $(this).html(text);
+                }
+            });
+
+            // Update button text
+            if (currentLang === 'ta') {
+                $('#langBtnText').text('English');
+            } else {
+                $('#langBtnText').text('தமிழ்');
+            }
+        }
+
+        // Add to Google Calendar Redirect
+        function addToGoogleCalendar() {
+            const title = encodeURIComponent("Valaikappu & Baby Shower - Madhumitha & Subash");
+            const details = encodeURIComponent("Valaikappu & Baby Shower Celebration for Madhumitha and Subash.");
+            const location = encodeURIComponent("PARKKAVAN TOWERS, Raja Nagar, No. 1 Tollgate, Bikshandarkoil, Tiruchirappalli, Tamil Nadu 621216");
+            const startTime = "20260906T043000Z"; // 10:00 AM IST = 04:30 UTC
+            const endTime = "20260906T083000Z";   // 02:00 PM IST = 08:30 UTC
+            
+            const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startTime}/${endTime}&details=${details}&location=${location}`;
+            window.open(url, '_blank');
+        }
+
+        // Generate and Download Apple / iCal .ics File
+        function downloadICSFile() {
+            const alarms = `BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Reminder: Valaikappu & Baby Shower starts in 30 minutes!
+END:VALARM\n`;
+
+            const icsData = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Valaikappu Invitation//EN
+BEGIN:VEVENT
+SUMMARY:Valaikappu & Baby Shower - Madhumitha & Subash
+DESCRIPTION:Valaikappu & Baby Shower celebration for Madhumitha and Subash.
+LOCATION:PARKKAVAN TOWERS, Raja Nagar, No. 1 Tollgate, Bikshandarkoil, Tiruchirappalli, Tamil Nadu 621216
+DTSTART:20260906T043000Z
+DTEND:20260906T083000Z
+${alarms}END:VEVENT
+END:VCALENDAR`;
+
+            const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.setAttribute('download', 'Valaikappu_Madhumitha_Subash.ics');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        $(document).ready(function() {
+            // Target Date: 06-September-2026, 10:00 AM 
+            const targetDate = new Date('September 06, 2026 10:00:00').getTime();
+
+            // Update countdown every 1 second
+            const timer = setInterval(function() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+
+                if (distance > 0) {
+                    // Time calculations
+                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    const secs = Math.floor((distance % (1000 * 60)) / 1000);
+
+                    // Output results with leading zero if single digit
+                    $('#days').text(days < 10 ? '0' + days : days);
+                    $('#hours').text(hours < 10 ? '0' + hours : hours);
+                    $('#mins').text(mins < 10 ? '0' + mins : mins);
+                    $('#secs').text(secs < 10 ? '0' + secs : secs);
+                } else {
+                    // If event has passed
+                    clearInterval(timer);
+                    $('#countdown').html('<div class="col-span-4 text-2xl font-display text-maroon py-4">The auspicious day has arrived! / சுப நாள் வந்துவிட்டது!</div>');
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
