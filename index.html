@@ -5,116 +5,509 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Valaikappu & Baby Shower - Madhumitha & Subash</title>
     
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: { maroon: '#8a1527', gold: '#d4af37', ivory: '#fdfcf7' },
-                    fontFamily: { serif: ['"Cormorant Garamond"', 'serif'], sans: ['"Montserrat"', 'sans-serif'] }
+                    colors: {
+                        maroon: {
+                            light: '#b31b34',
+                            DEFAULT: '#8a1527', // Rich Kumkum Red
+                            dark: '#540814'
+                        },
+                        gold: {
+                            light: '#f9f1d8',
+                            DEFAULT: '#d4af37',
+                            dark: '#aa8c2c'
+                        },
+                        ivory: {
+                            DEFAULT: '#fdfcf7',
+                            dark: '#f4efe6'
+                        }
+                    },
+                    fontFamily: {
+                        display: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Montserrat"', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'elegant': '0 20px 40px -15px rgba(138, 21, 39, 0.4)',
+                        'gold-glow': '0 0 20px rgba(212, 175, 55, 0.3)',
+                    }
                 }
             }
         }
     </script>
+
     <style>
-        body { 
-            background: #fdfcf7 radial-gradient(#d4af37 0.6px, transparent 0.6px) 0 0 / 24px 24px; 
-            -webkit-touch-callout: none;
+        body {
+            background-color: #fdfcf7;
+            /* Added a subtle light gradient behind the dot pattern for depth */
+            background-image: 
+                radial-gradient(#d4af37 0.5px, transparent 0.5px),
+                linear-gradient(135deg, #fdfcf7 0%, #f0e4d4 50%, #e8d0bd 100%);
+            background-size: 24px 24px, 100% 100%;
+            background-attachment: fixed;
+            color: #2c1810;
+            overflow-x: hidden;
+            position: relative;
+            -webkit-touch-callout: none; /* Disable iOS long-press menu */
         }
-        .glass { background: rgba(253, 252, 247, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+
+        /* Glassmorphism for lower sections */
+        .glass-light {
+            /* Increased opacity and shadow slightly to elevate against the new background gradient */
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(253, 252, 247, 0.7) 100%);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 1);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.4);
+            border-right: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 15px 35px -5px rgba(138, 21, 39, 0.15), inset 0 0 20px rgba(255, 255, 255, 0.8);
+            transform: translateZ(0); /* Hardware acceleration to fix mobile scroll stutter */
+            will-change: transform;
+        }
+
+        /* Traditional Corner Accents */
+        .corner-accent {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 2px solid #d4af37;
+            opacity: 0.9;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+        }
+        .group:hover .corner-accent { width: 40px; height: 40px; }
+        .ca-tl { top: 16px; left: 16px; border-right: none; border-bottom: none; border-top-left-radius: 8px;}
+        .ca-tr { top: 16px; right: 16px; border-left: none; border-bottom: none; border-top-right-radius: 8px;}
+        .ca-bl { bottom: 16px; left: 16px; border-right: none; border-top: none; border-bottom-left-radius: 8px;}
+        .ca-br { bottom: 16px; right: 16px; border-left: none; border-top: none; border-bottom-right-radius: 8px;}
+
+        /* Shimmering Gold Text */
+        .text-gold-gradient {
+            background: linear-gradient(to right, #d4af37, #fff9e6, #d4af37);
+            background-size: 200% auto;
+            color: #d4af37;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 4s linear infinite;
+        }
+        @keyframes shimmer { to { background-position: 200% center; } }
+
+        /* Top Toran Zari Border */
+        .zari-border-top {
+            height: 6px;
+            width: 100%;
+            position: fixed;
+            top: 0; left: 0; z-index: 100;
+            background: linear-gradient(90deg, #540814, #d4af37, #8a1527, #d4af37, #540814);
+            background-size: cover;
+        }
         
-        @media print { html, body { display: none !important; } }
+        /* Scroll Reveal */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+
+        /* Mobile Countdown Fix */
+        @media (max-width: 450px) {
+            .countdown-num { font-size: 1.5rem !important; line-height: 1.2 !important; }
+            .countdown-lbl { font-size: 0.5rem !important; }
+            .countdown-box { padding: 0.5rem 0.25rem !important; }
+        }
+
+        /* Enhanced Airport Flipboard Animation */
+        .flip-display {
+            background: linear-gradient(to bottom, #4a0815 0%, #29040b 100%);
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.8), 0 4px 6px rgba(138,21,39,0.3);
+            border: 1px solid #8a1527;
+            perspective: 600px; /* Crucial for 3D effect */
+            position: relative;
+        }
+        
+        .flip-hinge {
+            position: absolute;
+            top: 50%; left: 0; width: 100%; height: 2px;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 10;
+            transform: translateY(-50%);
+            box-shadow: 0 1px 0 rgba(255,255,255,0.15);
+        }
+
+        .countdown-num {
+            display: inline-block;
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+            transform-origin: center center;
+        }
+
+        @keyframes trueFlap {
+            0% { transform: rotateX(90deg) scale(0.9); opacity: 0; filter: blur(4px); }
+            50% { opacity: 1; }
+            100% { transform: rotateX(0deg) scale(1); opacity: 1; filter: blur(0); }
+        }
+
+        .animate-flap {
+            animation: trueFlap 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; /* Fluid spring-like easing */
+        }
+
+        /* Disable Printing */
+        @media print {
+            html, body {
+                display: none !important;
+            }
+        }
     </style>
 </head>
-<body class="font-sans text-[#2c1810] antialiased min-h-screen flex flex-col items-center select-none" oncontextmenu="return false;" onselectstart="return false;" ondragstart="return false;">
-    
-    <div class="fixed top-0 left-0 w-full h-1.5 bg-gradient-to-r from-[#540814] via-gold to-[#540814] z-50"></div>
 
-    <main class="w-full max-w-3xl mx-auto px-4 py-12 md:py-20 space-y-6 md:space-y-8 relative z-10">
-        
-        <!-- Hero Section -->
-        <header class="bg-[#8a1527] text-center rounded-[2rem] p-8 md:p-14 border border-gold/40 shadow-2xl relative overflow-hidden">
-            <!-- Native Unicode replaces heavy SVG/FontAwesome for background motif -->
-            <div class="absolute inset-0 flex items-center justify-center text-gold/10 text-[18rem] md:text-[25rem] select-none pointer-events-none -translate-y-8">✺</div>
+<body class="font-sans antialiased min-h-screen relative flex flex-col items-center select-none" oncontextmenu="return false;" onselectstart="return false;" ondragstart="return false;">
+
+    <!-- Fixed Top Border -->
+    <div class="zari-border-top shadow-lg"></div>
+    
+    <!-- Static Background Elements (Bangles, Leaves, Hearts, Flowers) -->
+    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='none' stroke='%23d4af37' stroke-width='6'/><circle cx='50' cy='50' r='34' fill='none' stroke='%238a1527' stroke-width='2'/><circle cx='50' cy='10' r='4' fill='%238a1527'/><circle cx='50' cy='90' r='4' fill='%238a1527'/><circle cx='10' cy='50' r='4' fill='%238a1527'/><circle cx='90' cy='50' r='4' fill='%238a1527'/></svg>" class="fixed z-10 opacity-30 pointer-events-none w-24 h-24 md:w-32 md:h-32 top-[15%] -left-8 md:left-4" alt="Bangle">
+    
+    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M10,90 Q10,40 50,10 Q90,10 90,50 Q90,90 10,90 Z' fill='%232e5a27' opacity='0.8'/><path d='M10,90 Q40,60 90,50' stroke='%231a3815' stroke-width='2' fill='none'/></svg>" class="fixed z-10 opacity-20 pointer-events-none w-32 h-32 md:w-48 md:h-48 top-[10%] -right-12 md:-right-4 transform rotate-45" alt="Leaves">
+    
+    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M50,90 C50,90 10,60 10,30 C10,10 40,10 50,30 C60,10 90,10 90,30 C90,60 50,90 50,90 Z' fill='%238a1527'/></svg>" class="fixed z-10 opacity-[0.15] pointer-events-none w-16 h-16 md:w-20 md:h-20 bottom-[30%] left-6 md:left-12 transform -rotate-12" alt="Heart">
+    
+    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='none' stroke='%232e5a27' stroke-width='6'/><circle cx='50' cy='50' r='34' fill='none' stroke='%23d4af37' stroke-width='2'/></svg>" class="fixed z-10 opacity-25 pointer-events-none w-28 h-28 md:w-40 md:h-40 bottom-[15%] -right-10 md:right-4 transform rotate-12" alt="Bangle">
+
+    <!-- Additional Static Elements for rich background -->
+    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M50 20 C60 0, 90 0, 90 20 C90 40, 50 80, 50 80 C50 80, 10 40, 10 20 C10 0, 40 0, 50 20 Z' fill='%238a1527'/></svg>" class="fixed z-10 opacity-10 pointer-events-none w-20 h-20 md:w-24 md:h-24 top-[5%] left-[40%] transform -rotate-12" alt="Lotus Motif">
+    
+    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M10,90 Q10,40 50,10 Q90,10 90,50 Q90,90 10,90 Z' fill='%232e5a27' opacity='0.8'/></svg>" class="fixed z-10 opacity-15 pointer-events-none w-24 h-24 md:w-32 md:h-32 top-[45%] -left-10 transform -rotate-45" alt="Leaves">
+
+    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M50,90 C50,90 10,60 10,30 C10,10 40,10 50,30 C60,10 90,10 90,30 C90,60 50,90 50,90 Z' fill='%23d4af37'/></svg>" class="fixed z-10 opacity-[0.15] pointer-events-none w-12 h-12 md:w-16 md:h-16 top-[50%] right-8 transform rotate-45" alt="Gold Heart">
+    
+    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M50 10 Q60 50 90 50 Q60 50 50 90 Q40 50 10 50 Q40 50 50 10 Z' fill='%23d4af37'/><circle cx='50' cy='50' r='10' fill='%238a1527'/></svg>" class="fixed z-10 opacity-[0.12] pointer-events-none w-20 h-20 md:w-28 md:h-28 bottom-[5%] left-[45%] transform rotate-12" alt="Flower">
+
+    <!-- Static Particle Canvas (Sprinkles) -->
+    <canvas id="bgCanvas" class="fixed inset-0 pointer-events-none z-10 opacity-60"></canvas>
+
+    <main class="w-full max-w-3xl mx-auto px-4 py-16 md:py-24 relative z-20 space-y-10">
+
+        <!-- Hero Section: Solid Rich Background -->
+        <header class="w-full bg-gradient-to-br from-maroon-dark via-maroon to-[#38040f] rounded-3xl p-8 md:p-14 text-center relative group reveal overflow-hidden shadow-elegant border border-gold/50">
+            <!-- Golden Corner Accents -->
+            <div class="corner-accent ca-tl"></div><div class="corner-accent ca-tr"></div>
+            <div class="corner-accent ca-bl"></div><div class="corner-accent ca-br"></div>
             
-            <div class="relative z-10">
-                <p class="text-[10px] md:text-xs tracking-[0.4em] text-gold/90 uppercase font-semibold mb-6">With joy & blessings, we invite you</p>
-                <h1 class="font-serif text-5xl md:text-7xl text-transparent bg-clip-text bg-gradient-to-r from-gold via-[#fff9e6] to-gold mb-2 drop-shadow-md">Valaikappu</h1>
-                <h2 class="font-serif text-2xl md:text-3xl text-ivory/90 italic mb-8">&amp; Baby Shower</h2>
-                <div class="w-24 h-px bg-gold/50 mx-auto mb-8"></div>
+            <!-- Subtle background Lotus motif inside the card -->
+            <div class="absolute inset-0 opacity-10 pointer-events-none flex items-center justify-center mix-blend-overlay overflow-hidden">
+                <svg viewBox="0 0 100 100" class="w-[28rem] h-[28rem] text-gold drop-shadow-md">
+                    <path d="M50 10 C 70 40 90 60 50 90 C 10 60 30 40 50 10 Z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M50 25 C 65 45 80 65 50 90 C 20 65 35 45 50 25 Z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M50 40 C 60 55 70 70 50 90 C 30 70 40 55 50 40 Z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                    <circle cx="50" cy="85" r="3" fill="currentColor"/>
+                </svg>
+            </div>
+
+            <div class="relative z-10 flex flex-col items-center">
                 
-                <div class="bg-black/25 border border-gold/30 px-8 py-5 rounded-2xl inline-block shadow-inner">
-                    <h3 class="font-serif text-3xl md:text-5xl text-ivory tracking-wide">Madhumitha <span class="text-gold italic mx-2">&amp;</span> Subash</h3>
+                <!-- Motif -->
+                <div class="mb-6 text-gold opacity-90 reveal delay-100">
+                    <svg width="60" height="60" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="drop-shadow-gold-glow">
+                        <path d="M50 5 L55 35 L85 40 L55 45 L50 75 L45 45 L15 40 L45 35 Z" fill="currentColor"/>
+                        <circle cx="50" cy="40" r="10" fill="#540814" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                </div>
+
+                <p class="font-sans text-[10px] md:text-xs tracking-[0.4em] text-gold/90 uppercase mb-6 reveal delay-100 font-semibold drop-shadow-sm">
+                    With joy & blessings, we invite you
+                </p>
+
+                <h1 class="font-display text-5xl md:text-7xl mb-2 leading-tight reveal delay-200 text-gold-gradient drop-shadow-lg">
+                    Valaikappu
+                </h1>
+                
+                <h2 class="font-display text-2xl md:text-4xl text-ivory/90 italic font-light mb-8 reveal delay-200 drop-shadow-md">
+                    &amp; Baby Shower
+                </h2>
+
+                <div class="w-32 h-px bg-gradient-to-r from-transparent via-gold to-transparent mb-8 opacity-60"></div>
+
+                <p class="font-display text-lg md:text-2xl text-ivory/80 mb-8 font-light italic max-w-lg mx-auto">
+                    "Celebrating the divine grace of motherhood and the little miracle soon to arrive."
+                </p>
+
+                <!-- Inner Name Plate -->
+                <div class="bg-black/20 border border-gold/30 px-10 py-6 rounded-2xl inline-block reveal shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
+                    <h3 class="font-display text-3xl md:text-5xl text-ivory tracking-wide drop-shadow-md">
+                        Madhumitha <br class="md:hidden">
+                        <span class="text-gold italic mx-3 font-display text-2xl md:text-4xl">&amp;</span> <br class="md:hidden">
+                        Subash
+                    </h3>
                 </div>
             </div>
         </header>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <!-- When -->
-            <section class="glass rounded-[2rem] p-8 text-center border border-white shadow-md">
-                <svg class="w-10 h-10 mx-auto text-maroon mb-4 opacity-80" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/></svg>
-                <h4 class="text-[10px] md:text-xs font-bold text-maroon/70 uppercase tracking-widest mb-2">When</h4>
-                <p class="font-serif text-2xl md:text-3xl text-maroon font-bold">Sunday, 06 Sept 2026</p>
-                <p class="text-[11px] md:text-xs font-bold mt-3 bg-maroon/10 text-maroon inline-block px-4 py-1.5 rounded-full tracking-wider">10:00 AM Onwards</p>
+        <!-- Event Details: Light Frosted Glass Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+            <!-- When Card -->
+            <section class="glass-light rounded-3xl p-8 text-center reveal group relative overflow-hidden transition-transform duration-300 md:hover:-translate-y-2">
+                <div class="w-12 h-12 mx-auto rounded-full bg-white/60 backdrop-blur-sm border border-white flex items-center justify-center text-maroon mb-4 shadow-sm group-hover:bg-maroon group-hover:text-ivory transition-colors duration-300">
+                    <i class="fa-regular fa-calendar-days text-xl"></i>
+                </div>
+                <h4 class="font-sans text-[10px] md:text-xs font-bold text-maroon/70 uppercase tracking-[0.3em] mb-3">When</h4>
+                <p class="font-display text-2xl md:text-3xl text-maroon-dark font-bold mb-1">Sunday, 06 Sept</p>
+                <p class="font-display text-xl text-maroon/80 mb-4 italic">2026</p>
+                <div class="inline-block px-5 py-2 rounded-full bg-maroon/90 text-ivory text-xs font-sans tracking-wide font-medium shadow-md border border-maroon-dark">
+                    10:00 AM Onwards
+                </div>
             </section>
-            
-            <!-- Where -->
-            <section class="glass rounded-[2rem] p-8 text-center border border-white shadow-md">
-                <svg class="w-10 h-10 mx-auto text-maroon mb-4 opacity-80" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
-                <h4 class="text-[10px] md:text-xs font-bold text-maroon/70 uppercase tracking-widest mb-2">Where</h4>
-                <p class="font-serif text-2xl md:text-3xl text-maroon font-bold mb-1">Parkkavan Towers</p>
-                <p class="text-xs text-[#540814]/80 font-medium mb-5">No. 1 Tollgate, Trichy</p>
-                <a href="https://maps.app.goo.gl/cFfFNj5tDBRYRcQL9" target="_blank" class="text-[11px] font-bold uppercase tracking-widest text-maroon border-b border-maroon/40 pb-1 hover:border-maroon transition-colors">View Map →</a>
+
+            <!-- Where Card -->
+            <section class="glass-light rounded-3xl p-8 text-center reveal group relative overflow-hidden transition-transform duration-300 md:hover:-translate-y-2">
+                <div class="w-12 h-12 mx-auto rounded-full bg-white/60 backdrop-blur-sm border border-white flex items-center justify-center text-maroon mb-4 shadow-sm group-hover:bg-maroon group-hover:text-ivory transition-colors duration-300">
+                    <i class="fa-solid fa-location-dot text-xl"></i>
+                </div>
+                <h4 class="font-sans text-[10px] md:text-xs font-bold text-maroon/70 uppercase tracking-[0.3em] mb-3">Where</h4>
+                <p class="font-display text-xl md:text-2xl text-maroon-dark font-bold mb-2">Parkkavan Towers</p>
+                <p class="font-sans text-xs md:text-sm text-gray-700 leading-relaxed mb-5 font-medium">
+                    Raja Nagar, No. 1 Tollgate,<br>
+                    Bikshandarkoil, Trichy
+                </p>
+                <a href="https://maps.app.goo.gl/cFfFNj5tDBRYRcQL9" target="_blank" class="inline-flex items-center justify-center gap-2 bg-maroon/10 hover:bg-maroon text-maroon hover:text-ivory px-5 py-2.5 rounded-xl text-xs font-sans font-bold uppercase tracking-widest transition-all duration-300 shadow-sm border border-maroon/20">
+                    View Map <i class="fa-solid fa-arrow-right-long ml-1"></i>
+                </a>
             </section>
         </div>
 
-        <section class="glass rounded-[2rem] p-8 md:p-10 text-center border border-white shadow-md">
-            <h3 class="font-serif text-2xl md:text-3xl text-maroon mb-8 italic">Awaiting the Joy</h3>
+        <!-- Countdown Section -->
+        <section class="w-full glass-light rounded-3xl p-6 md:p-10 text-center reveal relative group">
             
-            <!-- Tabular-nums prevents jumping natively without JS rendering tricks -->
-            <div class="flex justify-center gap-3 sm:gap-4 mb-10">
-                <div class="text-center"><div id="cd-d" class="font-sans text-3xl md:text-5xl font-bold text-gold bg-white/60 border border-white rounded-xl p-3 md:p-4 w-16 md:w-24 tabular-nums shadow-sm">00</div><div class="text-[9px] md:text-[10px] uppercase font-bold mt-2 text-maroon/80 tracking-widest">Days</div></div>
-                <div class="text-center"><div id="cd-h" class="font-sans text-3xl md:text-5xl font-bold text-gold bg-white/60 border border-white rounded-xl p-3 md:p-4 w-16 md:w-24 tabular-nums shadow-sm">00</div><div class="text-[9px] md:text-[10px] uppercase font-bold mt-2 text-maroon/80 tracking-widest">Hrs</div></div>
-                <div class="text-center"><div id="cd-m" class="font-sans text-3xl md:text-5xl font-bold text-gold bg-white/60 border border-white rounded-xl p-3 md:p-4 w-16 md:w-24 tabular-nums shadow-sm">00</div><div class="text-[9px] md:text-[10px] uppercase font-bold mt-2 text-maroon/80 tracking-widest">Mins</div></div>
-                <div class="text-center"><div id="cd-s" class="font-sans text-3xl md:text-5xl font-bold text-gold bg-white/60 border border-white rounded-xl p-3 md:p-4 w-16 md:w-24 tabular-nums shadow-sm">00</div><div class="text-[9px] md:text-[10px] uppercase font-bold mt-2 text-maroon/80 tracking-widest">Secs</div></div>
+            <h3 class="font-display text-2xl md:text-3xl text-maroon-dark mb-6 italic font-medium">Awaiting the Joy</h3>
+            
+            <!-- Strictly 4 columns to keep on one line for mobile -->
+            <div class="grid grid-cols-4 gap-2 sm:gap-3 md:gap-4 w-full max-w-lg mx-auto mb-10" id="countdown">
+                
+                <div class="countdown-box flex flex-col items-center justify-center p-2 md:p-4 bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl shadow-[0_8px_16px_rgba(0,0,0,0.05)]">
+                    <div class="flip-display relative w-full h-14 sm:w-16 sm:h-20 md:w-20 md:h-24 rounded-lg flex items-center justify-center mb-2">
+                        <div class="flip-hinge"></div>
+                        <span id="days" class="countdown-num font-sans text-2xl sm:text-3xl md:text-5xl text-gold font-bold tracking-wider relative z-0">00</span>
+                    </div>
+                    <span class="countdown-lbl font-sans text-[9px] sm:text-xs font-bold text-maroon-dark/80 uppercase tracking-widest mt-1">Days</span>
+                </div>
+                
+                <div class="countdown-box flex flex-col items-center justify-center p-2 md:p-4 bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl shadow-[0_8px_16px_rgba(0,0,0,0.05)]">
+                    <div class="flip-display relative w-full h-14 sm:w-16 sm:h-20 md:w-20 md:h-24 rounded-lg flex items-center justify-center mb-2">
+                        <div class="flip-hinge"></div>
+                        <span id="hours" class="countdown-num font-sans text-2xl sm:text-3xl md:text-5xl text-gold font-bold tracking-wider relative z-0">00</span>
+                    </div>
+                    <span class="countdown-lbl font-sans text-[9px] sm:text-xs font-bold text-maroon-dark/80 uppercase tracking-widest mt-1">Hours</span>
+                </div>
+
+                <div class="countdown-box flex flex-col items-center justify-center p-2 md:p-4 bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl shadow-[0_8px_16px_rgba(0,0,0,0.05)]">
+                    <div class="flip-display relative w-full h-14 sm:w-16 sm:h-20 md:w-20 md:h-24 rounded-lg flex items-center justify-center mb-2">
+                        <div class="flip-hinge"></div>
+                        <span id="mins" class="countdown-num font-sans text-2xl sm:text-3xl md:text-5xl text-gold font-bold tracking-wider relative z-0">00</span>
+                    </div>
+                    <span class="countdown-lbl font-sans text-[9px] sm:text-xs font-bold text-maroon-dark/80 uppercase tracking-widest mt-1">Mins</span>
+                </div>
+
+                <div class="countdown-box flex flex-col items-center justify-center p-2 md:p-4 bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl shadow-[0_8px_16px_rgba(0,0,0,0.05)]">
+                    <div class="flip-display relative w-full h-14 sm:w-16 sm:h-20 md:w-20 md:h-24 rounded-lg flex items-center justify-center mb-2">
+                        <div class="flip-hinge"></div>
+                        <span id="secs" class="countdown-num font-sans text-2xl sm:text-3xl md:text-5xl text-gold font-bold tracking-wider relative z-0">00</span>
+                    </div>
+                    <span class="countdown-lbl font-sans text-[9px] sm:text-xs font-bold text-maroon-dark/80 uppercase tracking-widest mt-1">Secs</span>
+                </div>
             </div>
 
-            <p class="text-[10px] font-bold text-maroon/70 uppercase tracking-widest mb-4">Save this event</p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <!-- Native URL params (Google) and Data URI (ICS). Zero JavaScript required! -->
-                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Valaikappu+%26+Baby+Shower+-+Madhumitha+%26+Subash&dates=20260906T043000Z/20260906T093000Z&location=Parkkavan+Towers,+Trichy" target="_blank" class="bg-gradient-to-r from-[#540814] to-maroon text-ivory text-xs font-bold uppercase tracking-widest px-6 py-4 rounded-xl shadow-md border border-gold/30 active:scale-95 transition-transform">Google Cal</a>
-                
-                <a href="data:text/calendar;charset=utf-8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ADTSTART:20260906T043000Z%0ADTEND:20260906T093000Z%0ASUMMARY:Valaikappu%20%26%20Baby%20Shower%20-%20Madhumitha%20%26%20Subash%0ALOCATION:Parkkavan%20Towers%2C%20Trichy%0ADESCRIPTION:As%20we%20step%20into%20this%20beautiful%20journey%20of%20parenthood%2C%20we%20request%20the%20pleasure%20of%20your%20company.%0AEND:VEVENT%0AEND:VCALENDAR" download="valaikappu.ics" class="bg-gradient-to-r from-[#540814] to-maroon text-ivory text-xs font-bold uppercase tracking-widest px-6 py-4 rounded-xl shadow-md border border-gold/30 active:scale-95 transition-transform">Apple / iCal</a>
+            <!-- Unified Calendar Actions -->
+            <div class="w-full flex flex-col items-center mt-2">
+                <p class="font-sans text-[10px] md:text-xs font-bold text-maroon/70 uppercase tracking-[0.2em] mb-4">Save this event</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center w-full max-w-lg mx-auto">
+                    <button onclick="addToGoogleCalendar()" class="flex-1 inline-flex items-center justify-center gap-2 bg-gradient-to-r from-maroon-dark to-maroon hover:from-maroon hover:to-maroon-light text-ivory px-5 py-3.5 rounded-xl text-xs font-sans font-bold uppercase tracking-wider transition-all shadow-md border border-gold/40 hover:shadow-gold-glow transform md:hover:-translate-y-1">
+                        <i class="fa-brands fa-google text-sm text-gold"></i> Google Cal
+                    </button>
+                    <button onclick="downloadICSFile()" class="flex-1 inline-flex items-center justify-center gap-2 bg-gradient-to-r from-maroon-dark to-maroon hover:from-maroon hover:to-maroon-light text-ivory px-5 py-3.5 rounded-xl text-xs font-sans font-bold uppercase tracking-wider transition-all shadow-md border border-gold/40 hover:shadow-gold-glow transform md:hover:-translate-y-1">
+                        <i class="fa-brands fa-apple text-sm text-gold"></i> Outlook / iCal
+                    </button>
+                </div>
             </div>
         </section>
 
-        <footer class="glass rounded-[2rem] p-8 md:p-12 text-center border border-white shadow-md mt-6">
-             <div class="w-16 h-px bg-maroon/30 mx-auto mb-6"></div>
-             <h3 class="font-serif text-2xl md:text-3xl text-[#540814] mb-4">Your Presence is Our Blessing</h3>
-             <p class="font-serif text-lg md:text-xl text-[#540814]/90 italic max-w-xl mx-auto leading-relaxed mb-8">
+        <!-- Footer / Blessings -->
+        <footer class="w-full glass-light rounded-3xl p-8 md:p-12 text-center reveal relative mt-6 border-b-4 border-b-maroon">
+             <div class="w-24 h-px bg-gradient-to-r from-transparent via-maroon to-transparent mx-auto mb-6 opacity-40"></div>
+             
+             <h3 class="font-display text-2xl md:text-3xl text-maroon-dark mb-4 drop-shadow-sm font-medium">Your Presence is Our Blessing</h3>
+             
+             <p class="font-display text-lg md:text-2xl text-maroon-dark/90 italic max-w-2xl mx-auto leading-relaxed mb-8 px-4">
                  "As we step into this beautiful journey of parenthood, we request the pleasure of your company and heartfelt blessings for the mother-to-be and our upcoming bundle of joy."
              </p>
-             <p class="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-maroon/60 mb-2">Warmly Invited By</p>
-             <p class="font-serif text-2xl text-[#540814] font-medium">Family &amp; Friends</p>
+             
+             <div class="inline-block bg-white/30 backdrop-blur-sm border border-white/50 px-8 py-4 rounded-xl shadow-sm">
+                 <p class="font-sans text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-maroon/60 mb-2">
+                    Warmly Invited By
+                </p>
+                <p class="font-display text-2xl text-maroon-dark font-semibold">
+                    Family &amp; Friends
+                </p>
+             </div>
         </footer>
+
     </main>
 
     <script>
-        // Extremely minimal, lazy Javascript for the countdown. No libraries, no complex DOM queries in loop.
-        const target = new Date('2026-09-06T10:00:00').getTime();
-        const els = ['d', 'h', 'm', 's'].map(id => document.getElementById(`cd-${id}`));
-        
-        setInterval(() => {
-            const d = target - Date.now();
-            if (d < 0) return;
-            const v = [d/864e5, (d%864e5)/36e5, (d%36e5)/6e4, (d%6e4)/1e3].map(Math.floor);
-            els.forEach((el, i) => {
-                const val = String(v[i]).padStart(2, '0');
-                if (el.innerText !== val) el.innerText = val; // Only update DOM if changed
-            });
-        }, 1000);
+        //        // --- Static Sprinkles (Gold/Rose/Green) ---
+        function initStaticParticles() {
+            const canvas = document.getElementById('bgCanvas');
+            const ctx = canvas.getContext('2d');
+            let width, height;
+
+            function resizeAndDraw() {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+                drawParticles();
+            }
+
+            window.addEventListener('resize', resizeAndDraw);
+
+            function drawParticles() {
+                ctx.clearRect(0, 0, width, height);
+                const particleCount = Math.min(Math.floor(width / 15), 100); 
+                
+                for (let i = 0; i < particleCount; i++) {
+                    const x = Math.random() * width;
+                    const y = Math.random() * height;
+                    const size = Math.random() * 3 + 1;
+                    const opacity = Math.random() * 0.6 + 0.2;
+                    
+                    const colors = [
+                        `rgba(212, 175, 55, ${opacity})`, // Gold
+                        `rgba(138, 21, 39, ${opacity * 0.7})`, // Maroon
+                        `rgba(46, 90, 39, ${opacity * 0.5})` // Leaf Green
+                    ];
+                    
+                    ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)];
+                    ctx.beginPath();
+                    if (Math.random() > 0.5) {
+                        ctx.arc(x, y, size, 0, Math.PI * 2);
+                    } else {
+                        ctx.rect(x, y, size * 1.2, size * 1.2);
+                    }
+                    ctx.fill();
+                }
+            }
+            
+            resizeAndDraw();
+        }
+
+        // --- Scroll Reveal ---
+        function initScrollReveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: "0px 0px -20px 0px" });
+            reveals.forEach(reveal => observer.observe(reveal));
+        }
+
+        // --- Countdown Logic with Flipboard Animation ---
+        function updateCountdown() {
+            const targetDate = new Date('September 6, 2026 10:00:00').getTime();
+            
+            function tick() {
+                const now = new Date().getTime();
+                const difference = targetDate - now;
+
+                if (difference <= 0) {
+                    updateElementValue('days', '00');
+                    updateElementValue('hours', '00');
+                    updateElementValue('mins', '00');
+                    updateElementValue('secs', '00');
+                    return;
+                }
+
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const mins = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const secs = Math.floor((difference % (1000 * 60)) / 1000);
+
+                updateElementValue('days', String(days).padStart(2, '0'));
+                updateElementValue('hours', String(hours).padStart(2, '0'));
+                updateElementValue('mins', String(mins).padStart(2, '0'));
+                updateElementValue('secs', String(secs).padStart(2, '0'));
+                
+                requestAnimationFrame(tick);
+            }
+
+            function updateElementValue(id, newValue) {
+                const el = document.getElementById(id);
+                if (el && el.innerText !== newValue) {
+                    el.innerText = newValue;
+                    
+                    // True Flip Animation Trigger
+                    el.classList.remove('animate-flap');
+                    void el.offsetWidth; // Force reflow
+                    el.classList.add('animate-flap');
+                }
+            }
+
+            tick();
+        }
+
+        // --- Calendar Integrations ---
+        function addToGoogleCalendar() {
+            const title = encodeURIComponent("Valaikappu & Baby Shower - Madhumitha & Subash");
+            const details = encodeURIComponent("As we step into this beautiful journey of parenthood, we request the pleasure of your company and heartfelt blessings for the mother-to-be.");
+            const location = encodeURIComponent("Parkkavan Towers, Raja Nagar, No. 1 Tollgate, Bikshandarkoil, Tiruchirappalli, Tamil Nadu 621216");
+            const dates = "20260906T043000Z/20260906T093000Z"; 
+            window.open(`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&details=${details}&location=${location}&dates=${dates}`, '_blank');
+        }
+
+        function downloadICSFile() {
+            const icsData = [
+                "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Valaikappu Invitation//EN", "CALSCALE:GREGORIAN",
+                "BEGIN:VEVENT", "SUMMARY:Valaikappu & Baby Shower - Madhumitha & Subash",
+                "DTSTART:20260906T043000Z", "DTEND:20260906T093000Z",
+                "LOCATION:Parkkavan Towers\\, Raja Nagar\\, No. 1 Tollgate\\, Bikshandarkoil\\, Tiruchirappalli",
+                "DESCRIPTION:As we step into this beautiful journey of parenthood\\, we request the pleasure of your company and heartfelt blessings for the mother-to-be.",
+                "STATUS:CONFIRMED", "BEGIN:VALARM", "TRIGGER:-PT60M", "DESCRIPTION:Reminder", "ACTION:DISPLAY", "END:VALARM",
+                "END:VEVENT", "END:VCALENDAR"
+            ].join("\r\n");
+
+            const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.setAttribute('download', 'Valaikappu_Invitation.ics');
+            document.body.appendChild(link); link.click(); document.body.removeChild(link);
+        }
+
+        //        // Initialize
+        window.addEventListener('DOMContentLoaded', () => {
+            initStaticParticles();
+            initScrollReveal();
+            updateCountdown();
+            
+            setTimeout(() => {
+                document.querySelectorAll('.reveal').forEach(reveal => {
+                    if (reveal.getBoundingClientRect().top < window.innerHeight) {
+                        reveal.classList.add('active');
+                    }
+                });
+            }, 100);
+        });
     </script>
 </body>
 </html>
