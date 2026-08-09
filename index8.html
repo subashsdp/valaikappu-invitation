@@ -61,7 +61,27 @@
             color: #2c1810;
             overflow-x: hidden;
             position: relative;
-            -webkit-touch-callout: none; /* Disable iOS long-press menu */
+        }
+
+        /* Background Blobs (Kept for the rest of the page) */
+        .liquid-blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.65;
+            animation: float-blob 20s infinite alternate ease-in-out;
+        }
+        
+        .blob-gold { top: 5%; left: 5%; width: 45vw; height: 45vw; background: linear-gradient(135deg, rgba(212,175,55,0.4) 0%, rgba(249,241,216,0.2) 100%); animation-delay: 0s; }
+        .blob-maroon { bottom: 5%; right: 5%; width: 55vw; height: 55vw; background: linear-gradient(135deg, rgba(138,21,39,0.3) 0%, rgba(84,8,20,0.1) 100%); animation-delay: -5s; }
+        
+        @keyframes float-blob {
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+            33% { transform: translate(30px, -50px) scale(1.1) rotate(5deg); border-radius: 60% 40% 30% 70% / 50% 60% 40% 40%; }
+            66% { transform: translate(-20px, 30px) scale(0.9) rotate(-5deg); border-radius: 50% 50% 60% 40% / 40% 40% 60% 60%; }
+            100% { transform: translate(40px, 20px) scale(1.05) rotate(2deg); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
         }
 
         /* Glassmorphism for lower sections */
@@ -113,9 +133,20 @@
             position: fixed;
             top: 0; left: 0; z-index: 100;
             background: linear-gradient(90deg, #540814, #d4af37, #8a1527, #d4af37, #540814);
-            background-size: cover;
+            background-size: 200% 100%;
+            animation: gradientMove 4s linear infinite;
         }
+        @keyframes gradientMove { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
         
+        /* Rotating Ashoka Chakra */
+        .spin-slow {
+            animation: spin-slow 20s linear infinite;
+        }
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
         /* Scroll Reveal */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
@@ -163,21 +194,18 @@
         .animate-flap {
             animation: trueFlap 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; /* Fluid spring-like easing */
         }
-
-        /* Disable Printing */
-        @media print {
-            html, body {
-                display: none !important;
-            }
-        }
     </style>
 </head>
 
-<body class="font-sans antialiased min-h-screen relative flex flex-col items-center select-none" oncontextmenu="return false;" onselectstart="return false;" ondragstart="return false;">
+<body class="font-sans antialiased min-h-screen relative flex flex-col items-center">
 
     <!-- Fixed Top Border -->
     <div class="zari-border-top shadow-lg"></div>
     
+    <!-- Liquid Glass Blobs Background (Behind content) -->
+    <div class="liquid-blob blob-gold"></div>
+    <div class="liquid-blob blob-maroon"></div>
+
     <!-- Static Background Elements (Bangles, Leaves, Hearts, Flowers) -->
     <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='none' stroke='%23d4af37' stroke-width='6'/><circle cx='50' cy='50' r='34' fill='none' stroke='%238a1527' stroke-width='2'/><circle cx='50' cy='10' r='4' fill='%238a1527'/><circle cx='50' cy='90' r='4' fill='%238a1527'/><circle cx='10' cy='50' r='4' fill='%238a1527'/><circle cx='90' cy='50' r='4' fill='%238a1527'/></svg>" class="fixed z-10 opacity-30 pointer-events-none w-24 h-24 md:w-32 md:h-32 top-[15%] -left-8 md:left-4" alt="Bangle">
     
@@ -207,14 +235,9 @@
             <div class="corner-accent ca-tl"></div><div class="corner-accent ca-tr"></div>
             <div class="corner-accent ca-bl"></div><div class="corner-accent ca-br"></div>
             
-            <!-- Subtle background Lotus motif inside the card -->
+            <!-- Subtle background mandala inside the card with spin animation -->
             <div class="absolute inset-0 opacity-10 pointer-events-none flex items-center justify-center mix-blend-overlay overflow-hidden">
-                <svg viewBox="0 0 100 100" class="w-[28rem] h-[28rem] text-gold drop-shadow-md">
-                    <path d="M50 10 C 70 40 90 60 50 90 C 10 60 30 40 50 10 Z" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                    <path d="M50 25 C 65 45 80 65 50 90 C 20 65 35 45 50 25 Z" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                    <path d="M50 40 C 60 55 70 70 50 90 C 30 70 40 55 50 40 Z" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                    <circle cx="50" cy="85" r="3" fill="currentColor"/>
-                </svg>
+                <i class="fa-solid fa-dharmachakra text-[25rem] text-gold spin-slow"></i>
             </div>
 
             <div class="relative z-10 flex flex-col items-center">
