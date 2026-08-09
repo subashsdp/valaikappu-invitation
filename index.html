@@ -3,17 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valaikappu & Baby Shower - Madhumitha & Subash</title>
+    <title>Baby Shower | Madhumitha & Subash</title>
     
-    <!-- Tailwind CSS -->
+    <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts -->
+    <!-- Load Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     
-    <!-- FontAwesome -->
+    <!-- Load jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- Load FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <script>
@@ -21,544 +24,164 @@
             theme: {
                 extend: {
                     colors: {
-                        maroon: {
-                            light: '#9e1b32',
-                            DEFAULT: '#7a1128', // Deep traditional red/maroon
-                            dark: '#4a0815'
-                        },
-                        gold: {
-                            light: '#f9f1d8',
-                            DEFAULT: '#d4af37',
-                            dark: '#aa8c2c'
-                        },
-                        ivory: {
-                            DEFAULT: '#fdfcf7',
-                            dark: '#f4efe6'
-                        }
+                        primary: '#d4a373', /* Warm Gold */
+                        secondary: '#faedcd', /* Soft Beige */
+                        accent: '#e9edc9', /* Soft Green */
+                        textMain: '#4a4a4a',
                     },
                     fontFamily: {
-                        display: ['"Cormorant Garamond"', 'serif'],
+                        serif: ['"Cormorant Garamond"', 'serif'],
                         sans: ['"Montserrat"', 'sans-serif'],
-                    },
-                    boxShadow: {
-                        'elegant': '0 20px 40px -15px rgba(122, 17, 40, 0.15)',
-                        'gold-glow': '0 0 20px rgba(212, 175, 55, 0.3)',
                     }
                 }
             }
         }
     </script>
-
+    
     <style>
         body {
-            background-color: #fdfcf7;
-            /* Subtle floral/mandala watermark pattern on the light background */
-            background-image: radial-gradient(#d4af37 0.5px, transparent 0.5px);
-            background-size: 24px 24px;
-            color: #2c1810;
-            overflow-x: hidden;
+            background-color: #fefae0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4a373' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            color: #4a4a4a;
         }
 
-        /* Ambient Glow behind cards */
-        .ambient-glow {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, rgba(253,252,247,0) 70%);
-            border-radius: 50%;
-            z-index: 0;
-            pointer-events: none;
+        .fade-in {
+            animation: fadeIn 1.5s ease-in-out;
         }
 
-        /* Card Gradients - The "Div Lite Dark/Gradient" Balance */
-        .card-dark-gradient {
-            background: linear-gradient(145deg, #7a1128 0%, #4a0815 100%);
-            color: #fdfcf7;
-            border: 1px solid rgba(212, 175, 55, 0.4);
-            box-shadow: 0 20px 40px -10px rgba(74, 8, 21, 0.4);
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
-        .card-light-gradient {
-            background: linear-gradient(145deg, #ffffff 0%, #f4efe6 100%);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            box-shadow: 0 15px 35px -10px rgba(122, 17, 40, 0.08);
-        }
-
-        /* Traditional Corner Accents */
-        .corner-accent {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            border: 2px solid #d4af37;
-            opacity: 0.8;
-            transition: all 0.3s ease;
-        }
-        .group:hover .corner-accent { width: 25px; height: 25px; opacity: 1; }
-        .ca-tl { top: 12px; left: 12px; border-right: none; border-bottom: none; }
-        .ca-tr { top: 12px; right: 12px; border-left: none; border-bottom: none; }
-        .ca-bl { bottom: 12px; left: 12px; border-right: none; border-top: none; }
-        .ca-br { bottom: 12px; right: 12px; border-left: none; border-top: none; }
-
-        /* Shimmering Gold Text */
-        .text-gold-gradient {
-            background: linear-gradient(to right, #d4af37, #f9f1d8, #d4af37);
-            background-size: 200% auto;
-            color: #d4af37;
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shimmer 4s linear infinite;
-        }
-        @keyframes shimmer {
-            to { background-position: 200% center; }
-        }
-
-        /* Top Toran / Border */
-        .zari-border-top {
-            height: 6px;
-            width: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 100;
-            background: linear-gradient(90deg, #7a1128, #d4af37, #7a1128);
-            background-size: 200% 100%;
-            animation: gradientMove 4s linear infinite;
-        }
-        @keyframes gradientMove {
-            0% { background-position: 100% 0; }
-            100% { background-position: -100% 0; }
-        }
-
-        /* Scroll Reveal */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .delay-100 { transition-delay: 100ms; }
-        .delay-200 { transition-delay: 200ms; }
-
-        /* Mobile Countdown Fix */
-        @media (max-width: 450px) {
-            .countdown-num { font-size: 1.25rem !important; line-height: 1.2 !important; }
-            .countdown-lbl { font-size: 0.45rem !important; letter-spacing: 0.05em !important; }
-            .countdown-box { padding: 0.35rem 0.15rem !important; }
-        }
-
-        /* Airport Flipboard Display Styles */
-        .flip-display {
-            background: linear-gradient(to bottom, #4a0815 0%, #29040b 100%);
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.5), 0 4px 6px rgba(0,0,0,0.1);
-            border: 1px solid #7a1128;
-            perspective: 400px;
+        .leaf-border {
+            border: 8px solid transparent;
+            border-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 0 C60 30, 90 40, 100 50 C90 60, 60 70, 50 100 C40 70, 10 60, 0 50 C10 40, 40 30, 50 0' fill='%23d4a373' opacity='0.5'/%3E%3C/svg%3E") 30 stretch;
         }
         
-        .flip-hinge {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 10;
-            transform: translateY(-50%);
-            box-shadow: 0 1px 0 rgba(255,255,255,0.1);
-        }
-
-        @keyframes flapFlip {
-            0% { transform: rotateX(-90deg); opacity: 0; }
-            50% { opacity: 1; }
-            100% { transform: rotateX(0deg); opacity: 1; }
-        }
-
-        .animate-flap {
-            display: inline-block;
-            animation: flapFlip 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-            transform-origin: center center;
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
     </style>
 </head>
+<body class="font-sans antialiased min-h-screen flex flex-col items-center">
 
-<body class="font-sans antialiased min-h-screen relative flex flex-col items-center">
-
-    <!-- Fixed Top Border -->
-    <div class="zari-border-top shadow-md"></div>
-    
-    <!-- Floating Particle Canvas (Gold/Rose Petals on Light Background) -->
-    <canvas id="bgCanvas" class="fixed inset-0 pointer-events-none z-10 opacity-60"></canvas>
-
-    <!-- Ambient background glows -->
-    <div class="ambient-glow" style="top: 10%; left: 10%;"></div>
-    <div class="ambient-glow" style="bottom: 20%; right: 10%;"></div>
-
-    <main class="w-full max-w-3xl mx-auto px-4 py-16 md:py-24 relative z-20 space-y-10">
-
-        <!-- Hero Section: Rich Dark Gradient Div on Light Background -->
-        <header class="w-full card-dark-gradient rounded-2xl p-8 md:p-14 text-center relative group reveal overflow-hidden">
-            <!-- Corner Accents -->
-            <div class="corner-accent ca-tl"></div><div class="corner-accent ca-tr"></div>
-            <div class="corner-accent ca-bl"></div><div class="corner-accent ca-br"></div>
-            
-            <!-- Subtle background mandala inside the dark card -->
-            <div class="absolute inset-0 opacity-5 pointer-events-none flex items-center justify-center">
-                <i class="fa-solid fa-dharmachakra text-[20rem]"></i>
-            </div>
-
-            <div class="relative z-10 flex flex-col items-center">
-                
-                <!-- Motif -->
-                <div class="mb-6 text-gold opacity-90 reveal delay-100">
-                    <svg width="60" height="60" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="drop-shadow-gold-glow">
-                        <path d="M50 5 L55 35 L85 40 L55 45 L50 75 L45 45 L15 40 L45 35 Z" fill="currentColor"/>
-                        <circle cx="50" cy="40" r="10" fill="#4a0815" stroke="currentColor" stroke-width="2"/>
-                    </svg>
+    <main class="w-full max-w-4xl mx-auto px-4 py-12 md:py-20 fade-in">
+        
+        <!-- Hero Section -->
+        <header class="glass-card rounded-3xl shadow-xl overflow-hidden mb-12 text-center relative border border-white/50">
+            <div class="bg-secondary/60 py-16 px-6 md:px-20 relative z-10">
+                <div class="mb-6">
+                    <i class="fa-solid fa-leaf text-primary text-3xl md:text-4xl opacity-70"></i>
                 </div>
-
-                <p class="font-sans text-[10px] md:text-xs tracking-[0.4em] text-gold/80 uppercase mb-6 reveal delay-100 font-semibold">
-                    With joy & blessings, we invite you
-                </p>
-
-                <h1 class="font-display text-5xl md:text-7xl mb-2 leading-tight reveal delay-200 text-gold-gradient drop-shadow-lg">
-                    Valaikappu
-                </h1>
+                <h3 class="text-sm md:text-base tracking-[0.2em] text-primary uppercase font-semibold mb-4">You are warmly invited to a</h3>
+                <h1 class="text-5xl md:text-7xl font-serif text-gray-800 mb-6 italic">Baby Shower</h1>
+                <p class="text-lg md:text-xl text-gray-600 mb-8 font-light">Honoring the parents-to-be</p>
                 
-                <h2 class="font-display text-2xl md:text-4xl text-ivory/90 italic font-light mb-8 reveal delay-200">
-                    &amp; Baby Shower
-                </h2>
-
-                <div class="w-32 h-px bg-gradient-to-r from-transparent via-gold to-transparent mb-8 opacity-50"></div>
-
-                <p class="font-display text-lg md:text-2xl text-ivory mb-8 font-light italic max-w-lg mx-auto">
-                    "Celebrating the divine grace of motherhood and the little miracle soon to arrive."
-                </p>
-
-                <div class="bg-black/20 backdrop-blur-sm border border-gold/20 px-8 py-5 rounded-xl inline-block reveal">
-                    <h3 class="font-display text-3xl md:text-5xl text-ivory tracking-wide drop-shadow-md">
-                        Madhumitha <br class="md:hidden">
-                        <span class="text-gold italic mx-3 font-display text-2xl md:text-4xl">&amp;</span> <br class="md:hidden">
-                        Subash
-                    </h3>
+                <div class="py-6 border-t border-b border-primary/30 max-w-lg mx-auto">
+                    <h2 class="text-3xl md:text-5xl font-serif text-primary font-bold">Madhumitha <br class="md:hidden"> <span class="text-2xl italic text-gray-400 font-light mx-2">&amp;</span> Subash</h2>
                 </div>
             </div>
         </header>
 
-        <!-- Event Details: Light Gradient Divs balancing the dark hero -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
             
-            <!-- When Card -->
-            <section class="card-light-gradient rounded-2xl p-8 text-center reveal group relative overflow-hidden transition-transform duration-300 hover:-translate-y-1">
-                <!-- Inner soft border -->
-                <div class="absolute inset-2 border border-gold/20 rounded-xl pointer-events-none"></div>
-
-                <div class="w-12 h-12 mx-auto rounded-full bg-maroon/10 border border-maroon/20 flex items-center justify-center text-maroon mb-4 group-hover:bg-maroon group-hover:text-ivory transition-colors duration-300">
-                    <i class="fa-regular fa-calendar-days text-xl"></i>
+            <!-- When & Where -->
+            <section class="glass-card rounded-3xl shadow-lg p-8 md:p-10 flex flex-col items-center text-center">
+                <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center text-primary text-2xl mb-6 shadow-sm">
+                    <i class="fa-regular fa-calendar-check"></i>
+                </div>
+                <h3 class="text-2xl font-serif font-bold text-gray-800 mb-6">When & Where</h3>
+                
+                <div class="mb-6 w-full">
+                    <p class="text-xl font-medium text-gray-700">Sunday</p>
+                    <p class="text-2xl font-serif text-primary font-bold my-1">06 September 2026</p>
+                    <p class="text-gray-600">10:00 AM Onwards</p> <!-- Default time added -->
                 </div>
                 
-                <h4 class="font-sans text-[10px] md:text-xs font-bold text-maroon/60 uppercase tracking-[0.3em] mb-3">When</h4>
-                <p class="font-display text-2xl md:text-3xl text-maroon font-bold mb-1">Sunday, 06 Sept</p>
-                <p class="font-display text-xl text-maroon/80 mb-4 italic">2026</p>
+                <div class="w-12 h-px bg-gray-300 mb-6"></div>
                 
-                <div class="inline-block px-4 py-1.5 rounded-full bg-maroon text-ivory text-xs font-sans tracking-wide font-medium shadow-md">
-                    10:00 AM Onwards
+                <div class="w-full">
+                    <h4 class="font-bold text-gray-800 mb-2">PARKKAVAN TOWERS</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                        Raja Nagar, No 1 Tollgate, <br>
+                        Bikshandarkoil, Tiruchirappalli, <br>
+                        Tamil Nadu 621216
+                    </p>
+                    <a href="https://maps.app.goo.gl/cFfFNj5tDBRYRcQL9" target="_blank" class="inline-flex items-center gap-2 bg-primary hover:bg-opacity-90 text-white px-6 py-3 rounded-full transition-all shadow-md font-medium text-sm">
+                        <i class="fa-solid fa-location-dot"></i> View on Google Maps
+                    </a>
                 </div>
             </section>
 
-            <!-- Where Card -->
-            <section class="card-light-gradient rounded-2xl p-8 text-center reveal group relative overflow-hidden transition-transform duration-300 hover:-translate-y-1">
-                <div class="absolute inset-2 border border-gold/20 rounded-xl pointer-events-none"></div>
-
-                <div class="w-12 h-12 mx-auto rounded-full bg-maroon/10 border border-maroon/20 flex items-center justify-center text-maroon mb-4 group-hover:bg-maroon group-hover:text-ivory transition-colors duration-300">
-                    <i class="fa-solid fa-location-dot text-xl"></i>
+            <section class="glass-card rounded-3xl shadow-lg p-8 md:p-10 flex flex-col items-center justify-center text-center">
+                <div class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center text-primary text-2xl mb-6 shadow-sm">
+                    <i class="fa-regular fa-clock"></i>
                 </div>
+                <h3 class="text-2xl font-serif font-bold text-gray-800 mb-8">Counting Down...</h3>
                 
-                <h4 class="font-sans text-[10px] md:text-xs font-bold text-maroon/60 uppercase tracking-[0.3em] mb-3">Where</h4>
-                <p class="font-display text-xl md:text-2xl text-maroon font-bold mb-2">Parkkavan Towers</p>
-                <p class="font-sans text-xs md:text-sm text-gray-600 leading-relaxed mb-5 font-medium">
-                    Raja Nagar, No. 1 Tollgate,<br>
-                    Bikshandarkoil, Trichy
-                </p>
-                
-                <a href="https://maps.app.goo.gl/cFfFNj5tDBRYRcQL9" target="_blank" class="inline-flex items-center justify-center gap-2 text-maroon hover:text-maroon-light text-xs font-sans font-bold uppercase tracking-widest transition-colors border-b-2 border-maroon/30 pb-0.5 hover:border-maroon">
-                    View Map <i class="fa-solid fa-arrow-right-long ml-1"></i>
-                </a>
+                <div class="grid grid-cols-4 gap-2 md:gap-4 w-full" id="countdown">
+                    <!-- Days -->
+                    <div class="bg-white border border-gray-100 rounded-2xl p-3 md:p-4 shadow-sm">
+                        <span id="days" class="block text-3xl md:text-4xl font-serif font-bold text-primary mb-1">00</span>
+                        <span class="text-xs md:text-sm text-gray-500 uppercase tracking-wider">Days</span>
+                    </div>
+                    <!-- Hours -->
+                    <div class="bg-white border border-gray-100 rounded-2xl p-3 md:p-4 shadow-sm">
+                        <span id="hours" class="block text-3xl md:text-4xl font-serif font-bold text-primary mb-1">00</span>
+                        <span class="text-xs md:text-sm text-gray-500 uppercase tracking-wider">Hours</span>
+                    </div>
+                    <!-- Minutes -->
+                    <div class="bg-white border border-gray-100 rounded-2xl p-3 md:p-4 shadow-sm">
+                        <span id="mins" class="block text-3xl md:text-4xl font-serif font-bold text-primary mb-1">00</span>
+                        <span class="text-xs md:text-sm text-gray-500 uppercase tracking-wider">Mins</span>
+                    </div>
+                    <!-- Seconds -->
+                    <div class="bg-white border border-gray-100 rounded-2xl p-3 md:p-4 shadow-sm">
+                        <span id="secs" class="block text-3xl md:text-4xl font-serif font-bold text-primary mb-1">00</span>
+                        <span class="text-xs md:text-sm text-gray-500 uppercase tracking-wider">Secs</span>
+                    </div>
+                </div>
+                <p class="mt-8 text-gray-600 italic font-serif text-lg">We can't wait to celebrate with you!</p>
             </section>
         </div>
-
-        <!-- Countdown Section -->
-        <section class="w-full card-light-gradient rounded-2xl p-6 md:p-10 text-center reveal relative group">
-            <div class="absolute inset-2 border border-gold/20 rounded-xl pointer-events-none"></div>
-            
-            <h3 class="font-display text-2xl md:text-3xl text-maroon mb-6 italic">Awaiting the Joy</h3>
-            
-            <!-- Strictly 4 columns to keep on one line for mobile -->
-            <div class="grid grid-cols-4 gap-1.5 sm:gap-3 md:gap-4 w-full max-w-lg mx-auto mb-8" id="countdown">
-                
-                <div class="countdown-box flex flex-col items-center justify-center p-2 md:p-4 bg-white border border-gold/30 rounded-xl shadow-sm">
-                    <div class="flip-display relative w-10 h-12 sm:w-14 sm:h-16 md:w-16 md:h-20 rounded flex items-center justify-center overflow-hidden mb-1.5">
-                        <div class="flip-hinge"></div>
-                        <span id="days" class="countdown-num font-sans text-xl sm:text-2xl md:text-4xl text-white font-bold tracking-wider relative z-0">00</span>
-                    </div>
-                    <span class="countdown-lbl font-sans text-[9px] sm:text-xs font-bold text-maroon/70 uppercase tracking-widest mt-1">Days</span>
-                </div>
-                
-                <div class="countdown-box flex flex-col items-center justify-center p-2 md:p-4 bg-white border border-gold/30 rounded-xl shadow-sm">
-                    <div class="flip-display relative w-10 h-12 sm:w-14 sm:h-16 md:w-16 md:h-20 rounded flex items-center justify-center overflow-hidden mb-1.5">
-                        <div class="flip-hinge"></div>
-                        <span id="hours" class="countdown-num font-sans text-xl sm:text-2xl md:text-4xl text-white font-bold tracking-wider relative z-0">00</span>
-                    </div>
-                    <span class="countdown-lbl font-sans text-[9px] sm:text-xs font-bold text-maroon/70 uppercase tracking-widest mt-1">Hours</span>
-                </div>
-
-                <div class="countdown-box flex flex-col items-center justify-center p-2 md:p-4 bg-white border border-gold/30 rounded-xl shadow-sm">
-                    <div class="flip-display relative w-10 h-12 sm:w-14 sm:h-16 md:w-16 md:h-20 rounded flex items-center justify-center overflow-hidden mb-1.5">
-                        <div class="flip-hinge"></div>
-                        <span id="mins" class="countdown-num font-sans text-xl sm:text-2xl md:text-4xl text-white font-bold tracking-wider relative z-0">00</span>
-                    </div>
-                    <span class="countdown-lbl font-sans text-[9px] sm:text-xs font-bold text-maroon/70 uppercase tracking-widest mt-1">Mins</span>
-                </div>
-
-                <div class="countdown-box flex flex-col items-center justify-center p-2 md:p-4 bg-white border border-gold/30 rounded-xl shadow-sm">
-                    <div class="flip-display relative w-10 h-12 sm:w-14 sm:h-16 md:w-16 md:h-20 rounded flex items-center justify-center overflow-hidden mb-1.5">
-                        <div class="flip-hinge"></div>
-                        <span id="secs" class="countdown-num font-sans text-xl sm:text-2xl md:text-4xl text-white font-bold tracking-wider relative z-0">00</span>
-                    </div>
-                    <span class="countdown-lbl font-sans text-[9px] sm:text-xs font-bold text-maroon/70 uppercase tracking-widest mt-1">Secs</span>
-                </div>
-            </div>
-
-            <!-- Calendar Actions -->
-            <div class="flex flex-col sm:flex-row gap-3 justify-center w-full max-w-md mx-auto">
-                <button onclick="addToGoogleCalendar()" class="flex-1 inline-flex items-center justify-center gap-2 bg-maroon hover:bg-maroon-light text-ivory px-5 py-2.5 rounded-full text-xs font-sans font-bold uppercase tracking-wider transition-colors shadow-md border border-maroon-dark">
-                    <i class="fa-brands fa-google text-sm"></i> Google Cal
-                </button>
-                <button onclick="downloadICSFile()" class="flex-1 inline-flex items-center justify-center gap-2 bg-white hover:bg-gold-light text-maroon border border-maroon px-5 py-2.5 rounded-full text-xs font-sans font-bold uppercase tracking-wider transition-colors shadow-sm">
-                    <i class="fa-regular fa-calendar-plus text-sm"></i> Apple / Outlook
-                </button>
-            </div>
-        </section>
-
-        <!-- Footer / Blessings -->
-        <footer class="w-full text-center pt-4 pb-12 reveal">
-             <div class="w-24 h-px bg-gradient-to-r from-transparent via-maroon to-transparent mx-auto mb-6 opacity-30"></div>
-             
-             <h3 class="font-display text-2xl md:text-3xl text-maroon mb-4 drop-shadow-sm">Your Presence is Our Blessing</h3>
-             
-             <p class="font-display text-lg md:text-xl text-maroon/90 italic max-w-2xl mx-auto leading-relaxed mb-6 px-4">
-                 "As we step into this beautiful journey of parenthood, we request the pleasure of your company and heartfelt blessings for the mother-to-be and our upcoming bundle of joy."
-             </p>
-             
-             <p class="font-sans text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-maroon/50 mb-2">
-                Warmly Invited By
-            </p>
-            <p class="font-display text-2xl text-maroon font-semibold">
-                Family &amp; Friends
-            </p>
+        
+        <footer class="text-center text-gray-500 text-sm py-6">
+            <p>Made with love for Madhumitha & Subash's little one.</p>
         </footer>
 
     </main>
 
     <script>
-        // --- Particle Animation (Gold/Rose tones for light background) ---
-        function initParticles() {
-            const canvas = document.getElementById('bgCanvas');
-            const ctx = canvas.getContext('2d');
-            let width, height;
-            let particles = [];
+        $(document).ready(function() {
+            // Target Date: 06-September-2026, 10:00 AM (Adjust time if needed)
+            const targetDate = new Date('September 06, 2026 10:00:00').getTime();
 
-            function resize() {
-                width = canvas.width = window.innerWidth;
-                height = canvas.height = window.innerHeight;
-            }
-            window.addEventListener('resize', resize);
-            resize();
-
-            class Particle {
-                constructor() {
-                    this.reset();
-                    this.y = Math.random() * height; 
-                }
-                
-                reset() {
-                    this.x = Math.random() * width;
-                    this.y = height + 10;
-                    this.size = Math.random() * 2.5 + 0.5;
-                    this.speedY = Math.random() * 0.5 + 0.2;
-                    this.speedX = (Math.random() - 0.5) * 0.4;
-                    this.opacity = Math.random() * 0.6 + 0.2;
-                    
-                    // Colors matching the traditional theme
-                    const colors = [
-                        `rgba(212, 175, 55, ${this.opacity})`, // Gold
-                        `rgba(158, 27, 50, ${this.opacity * 0.7})`, // Maroon/Rose
-                        `rgba(249, 241, 216, ${this.opacity})` // Light Gold/Champagne
-                    ];
-                    this.color = colors[Math.floor(Math.random() * colors.length)];
-                }
-
-                update() {
-                    this.y -= this.speedY;
-                    this.x += this.speedX;
-                    
-                    // Subtle twinkling
-                    if(Math.random() < 0.02) {
-                        this.opacity = Math.random() * 0.5 + 0.3;
-                    }
-
-                    if (this.y < -10 || this.x < -10 || this.x > width + 10) {
-                        this.reset();
-                    }
-                }
-
-                draw() {
-                    ctx.fillStyle = this.color;
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                    ctx.fill();
-                }
-            }
-
-            // Fewer particles for a cleaner look on light background
-            const particleCount = Math.min(Math.floor(width / 25), 30); 
-            for (let i = 0; i < particleCount; i++) {
-                particles.push(new Particle());
-            }
-
-            function animate() {
-                ctx.clearRect(0, 0, width, height);
-                particles.forEach(p => {
-                    p.update();
-                    p.draw();
-                });
-                requestAnimationFrame(animate);
-            }
-            animate();
-        }
-
-        // --- Scroll Reveal ---
-        function initScrollReveal() {
-            const reveals = document.querySelectorAll('.reveal');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                    }
-                });
-            }, { 
-                threshold: 0.1, 
-                rootMargin: "0px 0px -20px 0px" 
-            });
-
-            reveals.forEach(reveal => observer.observe(reveal));
-        }
-
-        // --- Countdown Logic ---
-        function updateCountdown() {
-            const targetDate = new Date('September 6, 2026 10:00:00').getTime();
-            
-            function tick() {
+            // Update countdown every 1 second
+            const timer = setInterval(function() {
                 const now = new Date().getTime();
-                const difference = targetDate - now;
+                const distance = targetDate - now;
 
-                if (difference <= 0) {
-                    document.getElementById('days').innerText = '00';
-                    document.getElementById('hours').innerText = '00';
-                    document.getElementById('mins').innerText = '00';
-                    document.getElementById('secs').innerText = '00';
-                    return;
+                if (distance > 0) {
+                    // Time calculations
+                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    const secs = Math.floor((distance % (1000 * 60)) / 1000);
+
+                    // Output results with leading zero if single digit
+                    $('#days').text(days < 10 ? '0' + days : days);
+                    $('#hours').text(hours < 10 ? '0' + hours : hours);
+                    $('#mins').text(mins < 10 ? '0' + mins : mins);
+                    $('#secs').text(secs < 10 ? '0' + secs : secs);
+                } else {
+                    // If event has passed
+                    clearInterval(timer);
+                    $('#countdown').html('<div class="col-span-4 text-2xl font-serif text-primary">The special day is here!</div>');
                 }
-
-                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const mins = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-                const secs = Math.floor((difference % (1000 * 60)) / 1000);
-
-                updateElementValue('days', String(days).padStart(2, '0'));
-                updateElementValue('hours', String(hours).padStart(2, '0'));
-                updateElementValue('mins', String(mins).padStart(2, '0'));
-                updateElementValue('secs', String(secs).padStart(2, '0'));
-                
-                requestAnimationFrame(tick);
-            }
-
-            function updateElementValue(id, newValue) {
-                const el = document.getElementById(id);
-                if (el && el.innerText !== newValue) {
-                    el.innerText = newValue;
-                    
-                    // Trigger the flip animation
-                    el.classList.remove('animate-flap');
-                    void el.offsetWidth; // Force DOM reflow to restart animation
-                    el.classList.add('animate-flap');
-                }
-            }
-
-            tick();
-        }
-
-        // --- Calendar Integrations ---
-        function addToGoogleCalendar() {
-            const title = encodeURIComponent("Valaikappu & Baby Shower - Madhumitha & Subash");
-            const details = encodeURIComponent("Join us in celebrating the Valaikappu & Baby Shower of Madhumitha & Subash.\n\nPlease grace the occasion with your presence and bless the mother-to-be.");
-            const location = encodeURIComponent("Parkkavan Towers, Raja Nagar, No. 1 Tollgate, Bikshandarkoil, Tiruchirappalli, Tamil Nadu 621216");
-            const dates = "20260906T043000Z/20260906T093000Z"; 
-            
-            const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&details=${details}&location=${location}&dates=${dates}`;
-            window.open(url, '_blank');
-        }
-
-        function downloadICSFile() {
-            const icsData = [
-                "BEGIN:VCALENDAR",
-                "VERSION:2.0",
-                "PRODID:-//Valaikappu Invitation//EN",
-                "CALSCALE:GREGORIAN",
-                "BEGIN:VEVENT",
-                "SUMMARY:Valaikappu & Baby Shower - Madhumitha & Subash",
-                "DTSTART:20260906T043000Z",
-                "DTEND:20260906T093000Z",
-                "LOCATION:Parkkavan Towers\\, Raja Nagar\\, No. 1 Tollgate\\, Bikshandarkoil\\, Tiruchirappalli\\, Tamil Nadu 621216",
-                "DESCRIPTION:Join us in celebrating the Valaikappu & Baby Shower of Madhumitha & Subash.\\n\\nPlease grace the occasion with your presence and bless the mother-to-be.",
-                "STATUS:CONFIRMED",
-                "BEGIN:VALARM",
-                "TRIGGER:-PT60M",
-                "DESCRIPTION:Reminder: Valaikappu & Baby Shower in 1 hour",
-                "ACTION:DISPLAY",
-                "END:VALARM",
-                "END:VEVENT",
-                "END:VCALENDAR"
-            ].join("\r\n");
-
-            const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
-            const link = document.createElement('a');
-            link.href = window.URL.createObjectURL(blob);
-            link.setAttribute('download', 'Valaikappu_Invitation.ics');
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-
-        // Initialize
-        window.addEventListener('DOMContentLoaded', () => {
-            initParticles();
-            initScrollReveal();
-            updateCountdown();
-            
-            // Trigger reveals for elements immediately in viewport
-            setTimeout(() => {
-                const reveals = document.querySelectorAll('.reveal');
-                reveals.forEach(reveal => {
-                    const rect = reveal.getBoundingClientRect();
-                    if (rect.top < window.innerHeight) {
-                        reveal.classList.add('active');
-                    }
-                });
-            }, 100);
+            }, 1000);
         });
     </script>
 </body>
