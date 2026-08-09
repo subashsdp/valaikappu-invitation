@@ -2,18 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Valaikappu & Baby Shower - Madhumitha & Subash</title>
     
-    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts -->
+    <!-- Google Fonts: Playfair Display (Elegant Serif) & Inter (Clean Sans) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
     
-    <!-- FontAwesome -->
+    <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <script>
@@ -21,28 +21,24 @@
             theme: {
                 extend: {
                     colors: {
-                        maroon: {
-                            light: '#b31b34',
-                            DEFAULT: '#8a1527', // Rich Kumkum Red
-                            dark: '#540814'
-                        },
-                        gold: {
-                            light: '#f9f1d8',
-                            DEFAULT: '#d4af37',
-                            dark: '#aa8c2c'
-                        },
-                        ivory: {
-                            DEFAULT: '#fdfcf7',
-                            dark: '#f4efe6'
-                        }
+                        // New Palette inspired by the reference images
+                        'banana-leaf': '#1a3c28',
+                        'banana-dark': '#0f2418',
+                        'marigold-orange': '#f57c00',
+                        'marigold-yellow': '#ffb300',
+                        'silk-magenta': '#d81b60',
+                        'silk-pink': '#fce4ec',
+                        'cream': '#fdfbf7',
+                        'gold': '#d4af37',
+                        dark: '#2c1810',
                     },
                     fontFamily: {
-                        display: ['"Cormorant Garamond"', 'serif'],
-                        sans: ['"Montserrat"', 'sans-serif'],
+                        display: ['"Playfair Display"', 'serif'],
+                        sans: ['"Inter"', 'sans-serif'],
                     },
                     boxShadow: {
-                        'elegant': '0 20px 40px -15px rgba(138, 21, 39, 0.4)',
-                        'gold-glow': '0 0 20px rgba(212, 175, 55, 0.3)',
+                        'card': '0 10px 30px -10px rgba(26, 60, 40, 0.15)',
+                        'glow': '0 0 20px rgba(245, 124, 0, 0.4)',
                     }
                 }
             }
@@ -51,116 +47,62 @@
 
     <style>
         body {
-            background-color: #fdfcf7;
-            background-image: radial-gradient(#d4af37 0.5px, transparent 0.5px);
-            background-size: 24px 24px;
+            background-color: #fdfbf7;
+            /* Subtle floral mandala pattern in the background */
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.08'%3E%3Cpath d='M30 30c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10-10-4.477-10-10zm0 0c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10 10 4.477 10 10zm0 0c-5.523 0-10-4.477-10-10s4.477-10 10-10 10 4.477 10 10-4.477 10-10 10zm0 0c5.523 0 10 4.477 10 10s-4.477 10-10 10-10-4.477-10-10 4.477-10 10-10z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
             color: #2c1810;
             overflow-x: hidden;
-            position: relative;
         }
 
-        /* Background Blobs (Kept for the rest of the page) */
-        .liquid-blob {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(80px);
-            z-index: 0;
-            pointer-events: none;
-            opacity: 0.65;
-            animation: float-blob 20s infinite alternate ease-in-out;
-        }
-        
-        .blob-gold { top: 5%; left: 5%; width: 45vw; height: 45vw; background: linear-gradient(135deg, rgba(212,175,55,0.4) 0%, rgba(249,241,216,0.2) 100%); animation-delay: 0s; }
-        .blob-maroon { bottom: 5%; right: 5%; width: 55vw; height: 55vw; background: linear-gradient(135deg, rgba(138,21,39,0.3) 0%, rgba(84,8,20,0.1) 100%); animation-delay: -5s; }
-        
-        @keyframes float-blob {
-            0% { transform: translate(0, 0) scale(1) rotate(0deg); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
-            33% { transform: translate(30px, -50px) scale(1.1) rotate(5deg); border-radius: 60% 40% 30% 70% / 50% 60% 40% 40%; }
-            66% { transform: translate(-20px, 30px) scale(0.9) rotate(-5deg); border-radius: 50% 50% 60% 40% / 40% 40% 60% 60%; }
-            100% { transform: translate(40px, 20px) scale(1.05) rotate(2deg); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
-        }
-
-        /* Glassmorphism for lower sections */
-        .glass-light {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(253, 252, 247, 0.4) 100%);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.9);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
-            border-right: 1px solid rgba(212, 175, 55, 0.2);
-            box-shadow: 0 20px 40px -10px rgba(138, 21, 39, 0.1), inset 0 0 20px rgba(255, 255, 255, 0.5);
-        }
-
-        /* Traditional Corner Accents */
-        .corner-accent {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            border: 2px solid #d4af37;
-            opacity: 0.9;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            pointer-events: none;
-        }
-        .group:hover .corner-accent { width: 40px; height: 40px; }
-        .ca-tl { top: 16px; left: 16px; border-right: none; border-bottom: none; border-top-left-radius: 8px;}
-        .ca-tr { top: 16px; right: 16px; border-left: none; border-bottom: none; border-top-right-radius: 8px;}
-        .ca-bl { bottom: 16px; left: 16px; border-right: none; border-top: none; border-bottom-left-radius: 8px;}
-        .ca-br { bottom: 16px; right: 16px; border-left: none; border-top: none; border-bottom-right-radius: 8px;}
-
-        /* Shimmering Gold Text */
-        .text-gold-gradient {
-            background: linear-gradient(to right, #d4af37, #fff9e6, #d4af37);
-            background-size: 200% auto;
-            color: #d4af37;
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shimmer 4s linear infinite;
-        }
-        @keyframes shimmer { to { background-position: 200% center; } }
-
-        /* Top Toran Zari Border */
-        .zari-border-top {
-            height: 6px;
+        /* Marigold Toran Header */
+        .toran-header {
             width: 100%;
-            position: fixed;
-            top: 0; left: 0; z-index: 100;
-            background: linear-gradient(90deg, #540814, #d4af37, #8a1527, #d4af37, #540814);
-            background-size: 200% 100%;
-            animation: gradientMove 4s linear infinite;
+            height: 60px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 60' preserveAspectRatio='none'%3E%3Cpath d='M0 0 Q25 40 50 0 Q75 40 100 0' fill='none' stroke='%231a3c28' stroke-width='2'/%3E%3C!-- Marigolds --%3E%3Ccircle cx='25' cy='20' r='8' fill='%23f57c00'/%3E%3Ccircle cx='25' cy='20' r='5' fill='%23ffb300'/%3E%3Ccircle cx='75' cy='20' r='8' fill='%23f57c00'/%3E%3Ccircle cx='75' cy='20' r='5' fill='%23ffb300'/%3E%3Ccircle cx='50' cy='5' r='6' fill='%23f57c00'/%3E%3Ccircle cx='50' cy='5' r='3' fill='%23ffb300'/%3E%3C!-- Green Leaves --%3E%3Cpath d='M25 28 L20 45 L30 45 Z' fill='%231a3c28'/%3E%3Cpath d='M75 28 L70 45 L80 45 Z' fill='%231a3c28'/%3E%3C/svg%3E");
+            background-repeat: repeat-x;
+            background-size: 150px 60px;
+            position: absolute;
+            top: -5px;
+            left: 0;
+            z-index: 50;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
         }
-        @keyframes gradientMove { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
 
         /* Scroll Reveal */
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
         .reveal.active { opacity: 1; transform: translateY(0); }
         .delay-100 { transition-delay: 100ms; }
         .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
 
-        /* Floating Parallax Elements */
+        /* Floating Parallax Elements (Bangles/Leaves) */
         .scroll-floater {
             position: fixed;
             z-index: 5;
             pointer-events: none;
-            opacity: 0.45;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+            opacity: 0.8;
+            filter: drop-shadow(0 5px 8px rgba(0,0,0,0.15));
             will-change: transform;
         }
 
-        /* Mobile Countdown Fix */
-        @media (max-width: 450px) {
-            .countdown-num { font-size: 1.5rem !important; line-height: 1.2 !important; }
-            .countdown-lbl { font-size: 0.5rem !important; }
-            .countdown-box { padding: 0.5rem 0.25rem !important; }
-        }
-
-        /* Enhanced Airport Flipboard Animation */
+        /* Airport Flipboard Animation */
         .flip-display {
-            background: linear-gradient(to bottom, #4a0815 0%, #29040b 100%);
-            box-shadow: inset 0 2px 8px rgba(0,0,0,0.8), 0 4px 6px rgba(138,21,39,0.3);
-            border: 1px solid #8a1527;
-            perspective: 600px; /* Crucial for 3D effect */
+            /* Dark green/black themed flipboard */
+            background: linear-gradient(to bottom, #1a3c28 0%, #0f2418 100%);
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.8), 0 4px 6px rgba(26,60,40,0.3);
+            border: 1px solid #2d5a3f;
+            perspective: 800px;
             position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-center: center;
+            border-radius: 8px;
         }
         
         .flip-hinge {
@@ -169,7 +111,7 @@
             background-color: rgba(0, 0, 0, 0.9);
             z-index: 10;
             transform: translateY(-50%);
-            box-shadow: 0 1px 0 rgba(255,255,255,0.15);
+            box-shadow: 0 1px 0 rgba(255,255,255,0.1);
         }
 
         .countdown-num {
@@ -177,192 +119,199 @@
             transform-style: preserve-3d;
             backface-visibility: hidden;
             transform-origin: center center;
+            color: #ffb300; /* Marigold Yellow Text */
         }
 
         @keyframes trueFlap {
-            0% { transform: rotateX(80deg); opacity: 0; filter: brightness(0.2); }
+            0% { transform: rotateX(80deg); opacity: 0.5; filter: brightness(0.5); }
             100% { transform: rotateX(0deg); opacity: 1; filter: brightness(1); }
         }
 
         .animate-flap {
-            animation: trueFlap 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            animation: trueFlap 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        /* Mobile specific fixes to force single line countdown */
+        @media (max-width: 500px) {
+            #countdown { gap: 0.25rem !important; }
+            .countdown-box { padding: 0.5rem 0.25rem !important; }
+            .flip-display { height: 3.5rem !important; }
+            .countdown-num { font-size: 1.5rem !important; }
+            .countdown-lbl { font-size: 0.5rem !important; letter-spacing: 0.05em !important; }
         }
     </style>
 </head>
-
 <body class="font-sans antialiased min-h-screen relative flex flex-col items-center">
 
-    <!-- Fixed Top Border -->
-    <div class="zari-border-top shadow-lg"></div>
-    
-    <!-- Liquid Glass Blobs Background (Behind content) -->
-    <div class="liquid-blob blob-gold"></div>
-    <div class="liquid-blob blob-maroon"></div>
+    <!-- Marigold Petal Particle Canvas -->
+    <canvas id="bgCanvas" class="fixed inset-0 pointer-events-none z-0 opacity-80"></canvas>
 
-    <!-- Floating Scroll Elements (Bangles and Lotuses) -->
-    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='none' stroke='%23d4af37' stroke-width='6'/><circle cx='50' cy='50' r='34' fill='none' stroke='%238a1527' stroke-width='2'/><circle cx='50' cy='10' r='4' fill='%238a1527'/><circle cx='50' cy='90' r='4' fill='%238a1527'/><circle cx='10' cy='50' r='4' fill='%238a1527'/><circle cx='90' cy='50' r='4' fill='%238a1527'/></svg>" 
-         class="scroll-floater w-16 h-16 md:w-24 md:h-24 top-[20%] left-[5%]" data-speed="0.2" data-rot="0.15" alt="Bangle">
+    <!-- Toran Garland at Top -->
+    <div class="toran-header"></div>
+
+    <!-- Floating Scroll Elements (Colorful Glass Bangles and Leaves) -->
+    <!-- Green & Magenta Bangles -->
+    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><ellipse cx='50' cy='45' rx='40' ry='15' fill='none' stroke='%23d81b60' stroke-width='4'/><ellipse cx='50' cy='50' rx='40' ry='15' fill='none' stroke='%231a3c28' stroke-width='4'/><ellipse cx='50' cy='55' rx='40' ry='15' fill='none' stroke='%23ffb300' stroke-width='4'/></svg>" 
+         class="scroll-floater w-20 h-20 md:w-28 md:h-28 top-[15%] left-[2%]" data-speed="0.2" data-rot="0.1" alt="Bangles">
          
-    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M50 20 C60 0, 90 0, 90 20 C90 40, 50 80, 50 80 C50 80, 10 40, 10 20 C10 0, 40 0, 50 20 Z' fill='%238a1527' stroke='%23d4af37' stroke-width='2'/></svg>" 
-         class="scroll-floater w-10 h-10 md:w-16 md:h-16 top-[60%] right-[8%]" data-speed="0.15" data-rot="-0.1" alt="Lotus">
+    <!-- Banana Leaf Element -->
+    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M10 90 Q 30 10, 90 10 Q 70 90, 10 90 Z' fill='%231a3c28' opacity='0.9'/><path d='M10 90 L 90 10' stroke='%234caf50' stroke-width='2'/></svg>" 
+         class="scroll-floater w-16 h-16 md:w-24 md:h-24 top-[60%] right-[3%]" data-speed="0.15" data-rot="-0.15" alt="Leaf">
          
-    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='none' stroke='%23d4af37' stroke-width='6'/><circle cx='50' cy='50' r='34' fill='none' stroke='%238a1527' stroke-width='2'/><circle cx='20' cy='20' r='3' fill='%23d4af37'/><circle cx='80' cy='80' r='3' fill='%23d4af37'/></svg>" 
-         class="scroll-floater w-20 h-20 md:w-32 md:h-32 bottom-[10%] left-[2%]" data-speed="0.25" data-rot="0.05" alt="Bangle">
+    <!-- Colorful Bangles -->
+    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><ellipse cx='50' cy='45' rx='30' ry='12' fill='none' stroke='%23f57c00' stroke-width='3'/><ellipse cx='50' cy='50' rx='30' ry='12' fill='none' stroke='%23d81b60' stroke-width='3'/><ellipse cx='50' cy='55' rx='30' ry='12' fill='none' stroke='%231a3c28' stroke-width='3'/></svg>" 
+         class="scroll-floater w-16 h-16 md:w-24 md:h-24 bottom-[10%] left-[5%]" data-speed="0.25" data-rot="0.05" alt="Bangles">
 
-    <!-- Floating Particle Canvas (Gold/Rose Petals) -->
-    <canvas id="bgCanvas" class="fixed inset-0 pointer-events-none z-10 opacity-50"></canvas>
+    <main class="w-full max-w-3xl mx-auto px-4 py-16 md:py-24 relative z-10 space-y-8">
 
-    <main class="w-full max-w-3xl mx-auto px-4 py-16 md:py-24 relative z-20 space-y-10">
-
-        <!-- Hero Section: Solid Rich Background -->
-        <header class="w-full bg-gradient-to-br from-maroon-dark via-maroon to-[#38040f] rounded-3xl p-8 md:p-14 text-center relative group reveal overflow-hidden shadow-elegant border border-gold/50">
-            <!-- Golden Corner Accents -->
-            <div class="corner-accent ca-tl"></div><div class="corner-accent ca-tr"></div>
-            <div class="corner-accent ca-bl"></div><div class="corner-accent ca-br"></div>
+        <!-- Hero Section: Banana Leaf Green with Arch Motif -->
+        <header class="w-full bg-gradient-to-br from-banana-leaf to-banana-dark rounded-[2.5rem] p-6 md:p-12 text-center relative reveal shadow-card overflow-hidden border-4 border-marigold-yellow/20">
             
-            <!-- Subtle background mandala inside the card -->
-            <div class="absolute inset-0 opacity-10 pointer-events-none flex items-center justify-center mix-blend-overlay">
-                <i class="fa-solid fa-dharmachakra text-[25rem] text-gold"></i>
+            <!-- Traditional Arch Graphic behind text -->
+            <div class="absolute inset-x-4 top-4 bottom-4 border-2 border-marigold-yellow/40 rounded-t-full pointer-events-none flex items-start justify-center pt-8">
+                <!-- Inner Arch Decoration -->
+                <svg width="100%" height="100%" viewBox="0 0 200 200" preserveAspectRatio="none" class="absolute inset-0 opacity-20 text-marigold-orange">
+                    <path d="M 10 200 L 10 100 Q 100 -20 190 100 L 190 200" fill="none" stroke="currentColor" stroke-width="4"/>
+                    <path d="M 30 200 L 30 110 Q 100 10 170 110 L 170 200" fill="none" stroke="currentColor" stroke-width="2"/>
+                </svg>
             </div>
 
-            <div class="relative z-10 flex flex-col items-center">
+            <div class="relative z-10 flex flex-col items-center pt-8 pb-4">
                 
-                <!-- Motif -->
-                <div class="mb-6 text-gold opacity-90 reveal delay-100">
-                    <svg width="60" height="60" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="drop-shadow-gold-glow">
-                        <path d="M50 5 L55 35 L85 40 L55 45 L50 75 L45 45 L15 40 L45 35 Z" fill="currentColor"/>
-                        <circle cx="50" cy="40" r="10" fill="#540814" stroke="currentColor" stroke-width="2"/>
-                    </svg>
-                </div>
+                <h3 class="font-sans text-[10px] md:text-xs tracking-[0.3em] text-marigold-yellow uppercase mb-6 font-bold bg-banana-dark/50 px-4 py-1 rounded-full border border-marigold-yellow/30">
+                    With Joy & Blessings, We Invite You
+                </h3>
 
-                <p class="font-sans text-[10px] md:text-xs tracking-[0.4em] text-gold/90 uppercase mb-6 reveal delay-100 font-semibold drop-shadow-sm">
-                    With joy & blessings, we invite you
-                </p>
-
-                <h1 class="font-display text-5xl md:text-7xl mb-2 leading-tight reveal delay-200 text-gold-gradient drop-shadow-lg">
+                <h1 class="font-display text-5xl md:text-7xl mb-2 leading-tight text-cream drop-shadow-md">
                     Valaikappu
                 </h1>
                 
-                <h2 class="font-display text-2xl md:text-4xl text-ivory/90 italic font-light mb-8 reveal delay-200 drop-shadow-md">
+                <h2 class="font-display text-2xl md:text-4xl text-marigold-orange italic font-medium mb-8 drop-shadow-sm">
                     &amp; Baby Shower
                 </h2>
 
-                <div class="w-32 h-px bg-gradient-to-r from-transparent via-gold to-transparent mb-8 opacity-60"></div>
+                <div class="flex items-center gap-4 mb-8 w-full justify-center opacity-80">
+                    <div class="h-px bg-gradient-to-r from-transparent to-marigold-yellow flex-1 max-w-[80px]"></div>
+                    <i class="fa-solid fa-leaf text-marigold-yellow"></i>
+                    <div class="h-px bg-gradient-to-l from-transparent to-marigold-yellow flex-1 max-w-[80px]"></div>
+                </div>
 
-                <p class="font-display text-lg md:text-2xl text-ivory/80 mb-8 font-light italic max-w-lg mx-auto">
-                    "Celebrating the divine grace of motherhood and the little miracle soon to arrive."
-                </p>
-
-                <!-- Inner Name Plate -->
-                <div class="bg-black/20 border border-gold/30 px-10 py-6 rounded-2xl inline-block reveal shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
-                    <h3 class="font-display text-3xl md:text-5xl text-ivory tracking-wide drop-shadow-md">
+                <div class="bg-cream/10 backdrop-blur-sm border border-marigold-yellow/30 px-10 py-6 rounded-2xl inline-block shadow-lg">
+                    <h3 class="font-display text-3xl md:text-5xl text-cream tracking-wide drop-shadow-md leading-relaxed">
                         Madhumitha <br class="md:hidden">
-                        <span class="text-gold italic mx-3 font-display text-2xl md:text-4xl">&amp;</span> <br class="md:hidden">
+                        <span class="text-silk-magenta italic mx-3 font-display text-2xl md:text-4xl">&amp;</span> <br class="md:hidden">
                         Subash
                     </h3>
                 </div>
             </div>
         </header>
 
-        <!-- Event Details: Light Frosted Glass Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
-            <!-- When Card -->
-            <section class="glass-light rounded-3xl p-8 text-center reveal group relative overflow-hidden transition-transform duration-300 hover:-translate-y-2">
-                <div class="w-12 h-12 mx-auto rounded-full bg-white/50 backdrop-blur-sm border border-white flex items-center justify-center text-maroon mb-4 shadow-sm group-hover:bg-maroon group-hover:text-ivory transition-colors duration-300">
-                    <i class="fa-regular fa-calendar-days text-xl"></i>
+        <!-- Event Details: Solid Cream Cards -->
+        <section class="w-full bg-white rounded-3xl p-8 md:p-10 text-center reveal shadow-card border border-banana-leaf/10 relative overflow-hidden group">
+            
+            <!-- Decorative corner elements -->
+            <svg class="absolute top-0 left-0 w-16 h-16 text-marigold-orange/20 transform -translate-x-4 -translate-y-4 group-hover:scale-110 transition-transform" viewBox="0 0 100 100" fill="currentColor">
+                <circle cx="50" cy="50" r="40" />
+            </svg>
+            <svg class="absolute bottom-0 right-0 w-20 h-20 text-silk-magenta/10 transform translate-x-4 translate-y-4 group-hover:scale-110 transition-transform" viewBox="0 0 100 100" fill="currentColor">
+                <circle cx="50" cy="50" r="40" />
+            </svg>
+
+            <div class="relative z-10">
+                <div class="w-14 h-14 mx-auto rounded-full bg-silk-pink border border-silk-magenta/30 flex items-center justify-center text-silk-magenta mb-4 shadow-sm">
+                    <i class="fa-regular fa-calendar-check text-2xl"></i>
                 </div>
-                <h4 class="font-sans text-[10px] md:text-xs font-bold text-maroon/70 uppercase tracking-[0.3em] mb-3">When</h4>
-                <p class="font-display text-2xl md:text-3xl text-maroon-dark font-bold mb-1">Sunday, 06 Sept</p>
-                <p class="font-display text-xl text-maroon/80 mb-4 italic">2026</p>
-                <div class="inline-block px-5 py-2 rounded-full bg-maroon/90 text-ivory text-xs font-sans tracking-wide font-medium shadow-md border border-maroon-dark">
+                
+                <h4 class="font-sans text-[11px] font-bold text-banana-leaf uppercase tracking-[0.2em] mb-4">Auspicious Day & Venue</h4>
+                
+                <p class="font-display text-3xl md:text-4xl text-banana-leaf font-bold mb-2">Sunday, 06 Sept 2026</p>
+                <div class="inline-block px-5 py-1.5 rounded-full bg-marigold-orange/10 text-marigold-orange font-bold text-xs tracking-wider mb-6 border border-marigold-orange/20">
                     10:00 AM Onwards
                 </div>
-            </section>
 
-            <!-- Where Card -->
-            <section class="glass-light rounded-3xl p-8 text-center reveal group relative overflow-hidden transition-transform duration-300 hover:-translate-y-2">
-                <div class="w-12 h-12 mx-auto rounded-full bg-white/50 backdrop-blur-sm border border-white flex items-center justify-center text-maroon mb-4 shadow-sm group-hover:bg-maroon group-hover:text-ivory transition-colors duration-300">
-                    <i class="fa-solid fa-location-dot text-xl"></i>
-                </div>
-                <h4 class="font-sans text-[10px] md:text-xs font-bold text-maroon/70 uppercase tracking-[0.3em] mb-3">Where</h4>
-                <p class="font-display text-xl md:text-2xl text-maroon-dark font-bold mb-2">Parkkavan Towers</p>
-                <p class="font-sans text-xs md:text-sm text-gray-700 leading-relaxed mb-5 font-medium">
+                <div class="w-16 h-px bg-banana-leaf/20 mx-auto mb-6"></div>
+                
+                <h3 class="font-display text-xl md:text-2xl text-banana-leaf font-bold mb-2">Parkkavan Towers</h3>
+                <p class="font-sans text-sm text-gray-600 leading-relaxed mb-6 font-medium max-w-sm mx-auto">
                     Raja Nagar, No. 1 Tollgate,<br>
-                    Bikshandarkoil, Trichy
+                    Bikshandarkoil, Tiruchirappalli,<br>
+                    Tamil Nadu 621216
                 </p>
-                <a href="https://maps.app.goo.gl/cFfFNj5tDBRYRcQL9" target="_blank" class="inline-flex items-center justify-center gap-2 text-maroon hover:text-maroon-light text-xs font-sans font-bold uppercase tracking-widest transition-colors border-b-2 border-maroon/30 pb-0.5 hover:border-maroon">
-                    View Map <i class="fa-solid fa-arrow-right-long ml-1"></i>
+                
+                <a href="https://maps.app.goo.gl/cFfFNj5tDBRYRcQL9" target="_blank" class="inline-flex items-center justify-center gap-2 bg-banana-leaf hover:bg-banana-dark text-cream px-6 py-3 rounded-xl text-xs font-sans font-bold uppercase tracking-wider transition-all shadow-md transform hover:-translate-y-1">
+                    <i class="fa-solid fa-location-dot text-marigold-yellow"></i> View on Google Maps
                 </a>
-            </section>
-        </div>
+            </div>
+        </section>
 
         <!-- Countdown Section -->
-        <section class="w-full glass-light rounded-3xl p-6 md:p-10 text-center reveal relative group">
+        <section class="w-full bg-cream rounded-3xl p-6 md:p-10 text-center reveal shadow-card border border-banana-leaf/10 relative">
             
-            <h3 class="font-display text-2xl md:text-3xl text-maroon-dark mb-6 italic font-medium">Awaiting the Joy</h3>
+            <h3 class="font-display text-2xl md:text-3xl text-banana-leaf mb-6 font-semibold">Awaiting the Joy</h3>
             
-            <!-- Strictly 4 columns to keep on one line for mobile -->
-            <div class="grid grid-cols-4 gap-2 sm:gap-3 md:gap-4 w-full max-w-lg mx-auto mb-10" id="countdown">
+            <!-- Grid forces 4 columns. Flex-1 ensures they share space equally. Single line on mobile. -->
+            <div class="grid grid-cols-4 gap-2 sm:gap-4 w-full mx-auto mb-8" id="countdown">
                 
-                <div class="countdown-box flex flex-col items-center justify-center p-2 md:p-4 bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl shadow-[0_8px_16px_rgba(0,0,0,0.05)]">
-                    <div class="flip-display relative w-full h-14 sm:w-16 sm:h-20 md:w-20 md:h-24 rounded-lg flex items-center justify-center mb-2">
+                <div class="countdown-box flex flex-col items-center justify-center">
+                    <div class="flip-display w-full aspect-[3/4] max-h-24 md:max-h-28 rounded-lg flex items-center justify-center mb-2 shadow-lg">
                         <div class="flip-hinge"></div>
-                        <span id="days" class="countdown-num font-sans text-2xl sm:text-3xl md:text-5xl text-gold font-bold tracking-wider relative z-0">00</span>
+                        <span id="days" class="countdown-num font-sans text-2xl sm:text-4xl md:text-5xl font-bold relative z-0 w-full text-center">00</span>
                     </div>
-                    <span class="countdown-lbl font-sans text-[9px] sm:text-xs font-bold text-maroon-dark/80 uppercase tracking-widest mt-1">Days</span>
+                    <span class="countdown-lbl font-sans text-[10px] sm:text-xs font-bold text-banana-leaf uppercase tracking-widest mt-1">Days</span>
                 </div>
                 
-                <div class="countdown-box flex flex-col items-center justify-center p-2 md:p-4 bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl shadow-[0_8px_16px_rgba(0,0,0,0.05)]">
-                    <div class="flip-display relative w-full h-14 sm:w-16 sm:h-20 md:w-20 md:h-24 rounded-lg flex items-center justify-center mb-2">
+                <div class="countdown-box flex flex-col items-center justify-center">
+                    <div class="flip-display w-full aspect-[3/4] max-h-24 md:max-h-28 rounded-lg flex items-center justify-center mb-2 shadow-lg">
                         <div class="flip-hinge"></div>
-                        <span id="hours" class="countdown-num font-sans text-2xl sm:text-3xl md:text-5xl text-gold font-bold tracking-wider relative z-0">00</span>
+                        <span id="hours" class="countdown-num font-sans text-2xl sm:text-4xl md:text-5xl font-bold relative z-0 w-full text-center">00</span>
                     </div>
-                    <span class="countdown-lbl font-sans text-[9px] sm:text-xs font-bold text-maroon-dark/80 uppercase tracking-widest mt-1">Hours</span>
+                    <span class="countdown-lbl font-sans text-[10px] sm:text-xs font-bold text-banana-leaf uppercase tracking-widest mt-1">Hours</span>
                 </div>
 
-                <div class="countdown-box flex flex-col items-center justify-center p-2 md:p-4 bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl shadow-[0_8px_16px_rgba(0,0,0,0.05)]">
-                    <div class="flip-display relative w-full h-14 sm:w-16 sm:h-20 md:w-20 md:h-24 rounded-lg flex items-center justify-center mb-2">
+                <div class="countdown-box flex flex-col items-center justify-center">
+                    <div class="flip-display w-full aspect-[3/4] max-h-24 md:max-h-28 rounded-lg flex items-center justify-center mb-2 shadow-lg">
                         <div class="flip-hinge"></div>
-                        <span id="mins" class="countdown-num font-sans text-2xl sm:text-3xl md:text-5xl text-gold font-bold tracking-wider relative z-0">00</span>
+                        <span id="mins" class="countdown-num font-sans text-2xl sm:text-4xl md:text-5xl font-bold relative z-0 w-full text-center">00</span>
                     </div>
-                    <span class="countdown-lbl font-sans text-[9px] sm:text-xs font-bold text-maroon-dark/80 uppercase tracking-widest mt-1">Mins</span>
+                    <span class="countdown-lbl font-sans text-[10px] sm:text-xs font-bold text-banana-leaf uppercase tracking-widest mt-1">Mins</span>
                 </div>
 
-                <div class="countdown-box flex flex-col items-center justify-center p-2 md:p-4 bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl shadow-[0_8px_16px_rgba(0,0,0,0.05)]">
-                    <div class="flip-display relative w-full h-14 sm:w-16 sm:h-20 md:w-20 md:h-24 rounded-lg flex items-center justify-center mb-2">
+                <div class="countdown-box flex flex-col items-center justify-center">
+                    <div class="flip-display w-full aspect-[3/4] max-h-24 md:max-h-28 rounded-lg flex items-center justify-center mb-2 shadow-lg">
                         <div class="flip-hinge"></div>
-                        <span id="secs" class="countdown-num font-sans text-2xl sm:text-3xl md:text-5xl text-gold font-bold tracking-wider relative z-0">00</span>
+                        <span id="secs" class="countdown-num font-sans text-2xl sm:text-4xl md:text-5xl font-bold relative z-0 w-full text-center">00</span>
                     </div>
-                    <span class="countdown-lbl font-sans text-[9px] sm:text-xs font-bold text-maroon-dark/80 uppercase tracking-widest mt-1">Secs</span>
+                    <span class="countdown-lbl font-sans text-[10px] sm:text-xs font-bold text-banana-leaf uppercase tracking-widest mt-1">Secs</span>
                 </div>
             </div>
 
             <!-- Unified Calendar Actions -->
             <div class="flex flex-col sm:flex-row gap-4 justify-center w-full max-w-lg mx-auto">
-                <button onclick="addToGoogleCalendar()" class="flex-1 inline-flex items-center justify-center gap-2 bg-gradient-to-r from-maroon-dark to-maroon hover:from-maroon hover:to-maroon-light text-ivory px-5 py-3.5 rounded-xl text-xs font-sans font-bold uppercase tracking-wider transition-all shadow-md border border-gold/40 hover:shadow-gold-glow transform hover:-translate-y-1">
-                    <i class="fa-brands fa-google text-sm text-gold"></i> Google Cal
+                <button onclick="addToGoogleCalendar()" class="flex-1 inline-flex items-center justify-center gap-2 bg-white text-banana-leaf border-2 border-banana-leaf hover:bg-banana-leaf hover:text-white px-5 py-3 rounded-xl text-xs font-sans font-bold uppercase tracking-wider transition-colors shadow-sm">
+                    <i class="fa-brands fa-google text-marigold-orange"></i> Google Cal
                 </button>
-                <button onclick="downloadICSFile()" class="flex-1 inline-flex items-center justify-center gap-2 bg-gradient-to-r from-maroon-dark to-maroon hover:from-maroon hover:to-maroon-light text-ivory px-5 py-3.5 rounded-xl text-xs font-sans font-bold uppercase tracking-wider transition-all shadow-md border border-gold/40 hover:shadow-gold-glow transform hover:-translate-y-1">
-                    <i class="fa-brands fa-apple text-sm text-gold"></i> Outlook / iCal
+                <button onclick="downloadICSFile()" class="flex-1 inline-flex items-center justify-center gap-2 bg-white text-banana-leaf border-2 border-banana-leaf hover:bg-banana-leaf hover:text-white px-5 py-3 rounded-xl text-xs font-sans font-bold uppercase tracking-wider transition-colors shadow-sm">
+                    <i class="fa-brands fa-apple text-marigold-orange"></i> Apple / Outlook
                 </button>
             </div>
         </section>
 
         <!-- Footer / Blessings -->
-        <footer class="w-full glass-light rounded-3xl p-8 md:p-12 text-center reveal relative mt-6 border-b-4 border-b-maroon">
-             <div class="w-24 h-px bg-gradient-to-r from-transparent via-maroon to-transparent mx-auto mb-6 opacity-40"></div>
+        <footer class="w-full bg-white rounded-3xl p-8 md:p-12 text-center reveal shadow-card border-b-8 border-b-silk-magenta relative overflow-hidden">
+             <!-- Background decor -->
+             <i class="fa-solid fa-om absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[10rem] text-marigold-yellow/5 pointer-events-none"></i>
              
-             <h3 class="font-display text-2xl md:text-3xl text-maroon-dark mb-4 drop-shadow-sm font-medium">Your Presence is Our Blessing</h3>
+             <div class="w-16 h-1 bg-marigold-orange mx-auto mb-8 rounded-full"></div>
              
-             <p class="font-display text-lg md:text-2xl text-maroon-dark/90 italic max-w-2xl mx-auto leading-relaxed mb-8 px-4">
-                 "As we step into this beautiful journey of parenthood, we request the pleasure of your company and heartfelt blessings for the mother-to-be and our upcoming bundle of joy."
+             <p class="font-display text-xl md:text-2xl text-banana-leaf font-medium max-w-2xl mx-auto leading-relaxed mb-8 px-4 relative z-10">
+                 "Please grace the occasion with your presence and bless the mother-to-be."
              </p>
              
-             <div class="inline-block bg-white/30 backdrop-blur-sm border border-white/50 px-8 py-4 rounded-xl shadow-sm">
-                 <p class="font-sans text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-maroon/60 mb-2">
+             <div class="inline-block bg-silk-pink/50 border border-silk-magenta/20 px-8 py-4 rounded-2xl shadow-sm relative z-10">
+                 <p class="font-sans text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-silk-magenta mb-2">
                     Warmly Invited By
                 </p>
-                <p class="font-display text-2xl text-maroon-dark font-semibold">
+                <p class="font-display text-2xl text-banana-leaf font-bold">
                     Family &amp; Friends
                 </p>
              </div>
@@ -371,7 +320,7 @@
     </main>
 
     <script>
-        // --- Parallax Scrolling Elements ---
+        // --- Parallax Scrolling Elements (Bangles/Leaves) ---
         function initParallax() {
             const floaters = document.querySelectorAll('.scroll-floater');
             window.addEventListener('scroll', () => {
@@ -379,15 +328,14 @@
                 floaters.forEach(floater => {
                     const speed = parseFloat(floater.dataset.speed) || 0.2;
                     const rotSpeed = parseFloat(floater.dataset.rot) || 0.1;
-                    // Move opposite to scroll for floating effect
                     const yPos = scrolled * speed * -1;
                     const rotation = scrolled * rotSpeed;
                     floater.style.transform = `translateY(${yPos}px) rotate(${rotation}deg)`;
                 });
-            });
+            }, { passive: true });
         }
 
-        // --- Particle Animation (Gold/Rose tones) ---
+        // --- Marigold Petal Particle Animation ---
         function initParticles() {
             const canvas = document.getElementById('bgCanvas');
             const ctx = canvas.getContext('2d');
@@ -401,7 +349,7 @@
             window.addEventListener('resize', resize);
             resize();
 
-            class Particle {
+            class Petal {
                 constructor() {
                     this.reset();
                     this.y = Math.random() * height; 
@@ -409,32 +357,39 @@
                 reset() {
                     this.x = Math.random() * width;
                     this.y = height + 10;
-                    this.size = Math.random() * 2.5 + 0.5;
-                    this.speedY = Math.random() * 0.5 + 0.2;
-                    this.speedX = (Math.random() - 0.5) * 0.4;
-                    this.opacity = Math.random() * 0.6 + 0.2;
-                    const colors = [
-                        `rgba(212, 175, 55, ${this.opacity})`, // Gold
-                        `rgba(138, 21, 39, ${this.opacity * 0.7})`, // Maroon
-                    ];
+                    this.sizeX = Math.random() * 4 + 2;
+                    this.sizeY = Math.random() * 6 + 3;
+                    this.speedY = Math.random() * 1 + 0.5;
+                    this.speedX = (Math.random() - 0.5) * 0.5;
+                    this.rotation = Math.random() * Math.PI * 2;
+                    this.rotSpeed = (Math.random() - 0.5) * 0.05;
+                    
+                    // Marigold colors: Bright Orange and Yellow
+                    const colors = ['#f57c00', '#ffb300', '#fb8c00'];
                     this.color = colors[Math.floor(Math.random() * colors.length)];
                 }
                 update() {
                     this.y -= this.speedY;
                     this.x += this.speedX;
-                    if(Math.random() < 0.02) this.opacity = Math.random() * 0.5 + 0.3;
-                    if (this.y < -10 || this.x < -10 || this.x > width + 10) this.reset();
+                    this.rotation += this.rotSpeed;
+                    if (this.y < -20 || this.x < -20 || this.x > width + 20) this.reset();
                 }
                 draw() {
+                    ctx.save();
+                    ctx.translate(this.x, this.y);
+                    ctx.rotate(this.rotation);
                     ctx.fillStyle = this.color;
+                    ctx.globalAlpha = 0.6;
                     ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.ellipse(0, 0, this.sizeX, this.sizeY, 0, 0, Math.PI * 2);
                     ctx.fill();
+                    ctx.restore();
                 }
             }
 
-            const particleCount = Math.min(Math.floor(width / 25), 30); 
-            for (let i = 0; i < particleCount; i++) particles.push(new Particle());
+            // More petals on desktop, fewer on mobile for performance
+            const particleCount = Math.min(Math.floor(width / 20), 40); 
+            for (let i = 0; i < particleCount; i++) particles.push(new Petal());
 
             function animate() {
                 ctx.clearRect(0, 0, width, height);
@@ -457,7 +412,7 @@
             reveals.forEach(reveal => observer.observe(reveal));
         }
 
-        // --- Countdown Logic with Flipboard Animation ---
+        // --- Mechanical Airport Flipboard Countdown ---
         function updateCountdown() {
             const targetDate = new Date('September 6, 2026 10:00:00').getTime();
             
@@ -493,7 +448,7 @@
                     
                     // True Flip Animation Trigger
                     el.classList.remove('animate-flap');
-                    void el.offsetWidth; // Force reflow
+                    void el.offsetWidth; // Force CSS reflow
                     el.classList.add('animate-flap');
                 }
             }
@@ -504,7 +459,7 @@
         // --- Calendar Integrations ---
         function addToGoogleCalendar() {
             const title = encodeURIComponent("Valaikappu & Baby Shower - Madhumitha & Subash");
-            const details = encodeURIComponent("As we step into this beautiful journey of parenthood, we request the pleasure of your company and heartfelt blessings for the mother-to-be.");
+            const details = encodeURIComponent("Please grace the occasion with your presence and bless the mother-to-be.");
             const location = encodeURIComponent("Parkkavan Towers, Raja Nagar, No. 1 Tollgate, Bikshandarkoil, Tiruchirappalli, Tamil Nadu 621216");
             const dates = "20260906T043000Z/20260906T093000Z"; 
             window.open(`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&details=${details}&location=${location}&dates=${dates}`, '_blank');
@@ -516,8 +471,8 @@
                 "BEGIN:VEVENT", "SUMMARY:Valaikappu & Baby Shower - Madhumitha & Subash",
                 "DTSTART:20260906T043000Z", "DTEND:20260906T093000Z",
                 "LOCATION:Parkkavan Towers\\, Raja Nagar\\, No. 1 Tollgate\\, Bikshandarkoil\\, Tiruchirappalli",
-                "DESCRIPTION:As we step into this beautiful journey of parenthood\\, we request the pleasure of your company and heartfelt blessings for the mother-to-be.",
-                "STATUS:CONFIRMED", "BEGIN:VALARM", "TRIGGER:-PT60M", "DESCRIPTION:Reminder", "ACTION:DISPLAY", "END:VALARM",
+                "DESCRIPTION:Please grace the occasion with your presence and bless the mother-to-be.",
+                "STATUS:CONFIRMED", "BEGIN:VALARM", "TRIGGER:-PT30M", "DESCRIPTION:Reminder", "ACTION:DISPLAY", "END:VALARM",
                 "END:VEVENT", "END:VCALENDAR"
             ].join("\r\n");
 
@@ -528,13 +483,14 @@
             document.body.appendChild(link); link.click(); document.body.removeChild(link);
         }
 
-        // Initialize
+        // Initialize all features on DOM load
         window.addEventListener('DOMContentLoaded', () => {
             initParallax();
             initParticles();
             initScrollReveal();
             updateCountdown();
             
+            // Initial trigger for elements already in view
             setTimeout(() => {
                 document.querySelectorAll('.reveal').forEach(reveal => {
                     if (reveal.getBoundingClientRect().top < window.innerHeight) {
